@@ -726,9 +726,17 @@ body {
     background: var(--card-bg);
     padding: 1.5rem;
     border-radius: 8px;
+    gap: 2rem;
 }
 
-.contract-section h3 {
+.contract-section, .player-bio-section {
+    background: var(--secondary-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.contract-section h3, .player-bio-section h3 {
     color: var(--accent-primary);
     margin-bottom: 1rem;
     font-size: 1.1rem;
@@ -903,6 +911,94 @@ body {
 .position-slot.average {
     background: var(--accent-orange);
     color: white;
+}
+
+/* Scout Notes Section */
+.scout-notes-container {
+    padding: 2rem;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.scout-section h3 {
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.scout-notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.scout-note {
+    background: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.scout-note h4 {
+    color: var(--accent-secondary);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.scout-note p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Form Tabs */
+.form-tabs {
+    display: flex;
+    background: var(--secondary-bg);
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.form-tab {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: none;
+    color: var(--text-secondary);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.form-tab:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.form-tab.active {
+    background: var(--accent-primary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.form-tab-content {
+    display: none;
+}
+
+.form-tab-content.active {
+    display: block;
+}
+
+/* Large Modal */
+.large-modal {
+    max-width: 800px;
+    max-height: 90vh;
 }
 
 /* Formation controls */
@@ -1586,6 +1682,10 @@ body {
         border-radius: 8px;
         background: var(--secondary-bg);
     }
+
+    .scout-notes-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -1615,6 +1715,14 @@ body {
     
     .player-summary-stats {
         justify-content: center;
+    }
+
+    .form-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .form-tab {
+        min-width: 120px;
     }
 }
 
@@ -1670,7 +1778,7 @@ body {
     }
     
     .players-table {
-        min-width: 800px;
+        min-width: 1000px;
     }
     
     .football-field {
@@ -1701,6 +1809,14 @@ body {
     
     .range-input-group input:last-child {
         order: 3;
+    }
+
+    .form-tabs {
+        flex-direction: column;
+    }
+    
+    .form-tab {
+        min-width: auto;
     }
 }
 
@@ -1756,6 +1872,10 @@ body {
     }
     
     .position-chart-container {
+        padding: 1.5rem;
+    }
+
+    .scout-notes-container {
         padding: 1.5rem;
     }
 }
