@@ -5,7 +5,10 @@ class FootballManager {
         this.formations = this.getFormations();
         this.sortOrder = 'asc';
         this.sortBy = 'name';
+        this.historySortOrder = 'asc';
+        this.historySortBy = 'name';
         this.selectedFieldPosition = null;
+        this.playerToRemove = null;
         
         this.init();
     }
@@ -132,6 +135,10 @@ class FootballManager {
                 { id: 1002, name: "Pierre Dubois", position: "CM", age: 23, level: 80, potential: 86, scoutRating: 4, transferInterest: "Medium", loanInterest: "Low", nextSteps: "Continue Monitoring", transferWorth: 3500000 },
                 { id: 1003, name: "Hans Mueller", position: "CB", age: 26, level: 83, potential: 85, scoutRating: 3.5, transferInterest: "Low", loanInterest: "Very Low", nextSteps: "On Hold", transferWorth: 4200000 }
             ],
+            playerHistory: [
+                { id: 2001, name: "Roberto Carlos", position: "LB", age: 35, level: 88, potential: 88, year: "2023", club: "Real Madrid", transferWorth: 15000000 },
+                { id: 2002, name: "Andrea Pirlo", position: "CM", age: 40, level: 92, potential: 92, year: "2022", club: "Juventus", transferWorth: 25000000 }
+            ],
             formation: '4231',
             lineup: {
                 starting: Array(11).fill(null),
@@ -233,6 +240,7 @@ class FootballManager {
             this.renderOverview();
             this.renderTactics();
             this.renderPlanning();
+            this.renderHistory();
             this.renderScouting();
             this.updatePositionFilters();
         }
@@ -373,6 +381,20 @@ class FootballManager {
             this.renderOverview();
         });
 
+        // History controls
+        document.getElementById('history-search-input').addEventListener('input', () => this.renderHistory());
+        document.getElementById('history-position-filter').addEventListener('change', () => this.renderHistory());
+        document.getElementById('history-year-filter').addEventListener('change', () => this.renderHistory());
+        document.getElementById('history-sort-select').addEventListener('change', (e) => {
+            this.historySortBy = e.target.value;
+            this.renderHistory();
+        });
+        document.getElementById('history-sort-order').addEventListener('click', () => {
+            this.historySortOrder = this.historySortOrder === 'asc' ? 'desc' : 'asc';
+            document.getElementById('history-sort-order').textContent = this.historySortOrder === 'asc' ? '↑' : '↓';
+            this.renderHistory();
+        });
+
         // Player detail navigation
         document.getElementById('back-to-overview').addEventListener('click', () => {
             this.switchTab('overview');
@@ -392,6 +414,10 @@ class FootballManager {
         // Add buttons
         document.getElementById('add-player-btn').addEventListener('click', () => {
             document.getElementById('add-player-modal').classList.add('show');
+        });
+
+        document.getElementById('add-history-player-btn').addEventListener('click', () => {
+            document.getElementById('add-history-modal').classList.add('show');
         });
 
         document.getElementById('add-scout-target-btn').addEventListener('click', () => {
@@ -417,6 +443,11 @@ class FootballManager {
             this.editPlayer();
         });
 
+        document.getElementById('add-history-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.addHistoryPlayer();
+        });
+
         document.getElementById('add-scout-form').addEventListener('submit', (e) => {
             e.preventDefault();
             this.addScoutTarget();
@@ -427,6 +458,19 @@ class FootballManager {
             this.addFuturePlayer();
         });
 
+        // Remove player modal
+        document.getElementById('move-to-history-btn').addEventListener('click', () => {
+            this.movePlayerToHistory();
+        });
+
+        document.getElementById('delete-permanently-btn').addEventListener('click', () => {
+            this.deletePlayerPermanently();
+        });
+
+        document.getElementById('cancel-remove-btn').addEventListener('click', () => {
+            document.getElementById('remove-player-modal').classList.remove('show');
+        });
+
         // Cancel buttons
         document.getElementById('cancel-add').addEventListener('click', () => {
             document.getElementById('add-player-modal').classList.remove('show');
@@ -434,6 +478,10 @@ class FootballManager {
 
         document.getElementById('cancel-edit').addEventListener('click', () => {
             document.getElementById('edit-player-modal').classList.remove('show');
+        });
+
+        document.getElementById('cancel-history').addEventListener('click', () => {
+            document.getElementById('add-history-modal').classList.remove('show');
         });
 
         document.getElementById('cancel-scout').addEventListener('click', () => {
@@ -493,6 +541,8 @@ class FootballManager {
             this.renderTactics();
         } else if (tabName === 'planning') {
             this.renderPlanning();
+        } else if (tabName === 'history') {
+            this.renderHistory();
         } else if (tabName === 'scouting') {
             this.renderScouting();
         }
@@ -523,7 +573,8 @@ class FootballManager {
 
         const positions = [...new Set(this.data.players.map(p => p.position))].sort();
         const scoutPositions = [...new Set(this.data.scoutTargets.map(p => p.position))].sort();
-        const allPositions = [...new Set([...positions, ...scoutPositions])].sort();
+        const historyPositions = [...new Set(this.data.playerHistory.map(p => p.position))].sort();
+        const allPositions = [...new Set([...positions, ...scoutPositions, ...historyPositions])].sort();
         
         // Update squad position filter
         const squadSelect = document.getElementById('position-filter');
@@ -548,6 +599,31 @@ class FootballManager {
             scoutSelect.appendChild(option);
         });
         scoutSelect.value = currentScoutValue;
+
+        // Update history position filter
+        const historySelect = document.getElementById('history-position-filter');
+        const currentHistoryValue = historySelect.value;
+        historySelect.innerHTML = '<option value="">All positions</option>';
+        historyPositions.forEach(position => {
+            const option = document.createElement('option');
+            option.value = position;
+            option.textContent = position;
+            historySelect.appendChild(option);
+        });
+        historySelect.value = currentHistoryValue;
+
+        // Update year filter for history
+        const years = [...new Set(this.data.playerHistory.map(p => p.year))].sort().reverse();
+        const yearSelect = document.getElementById('history-year-filter');
+        const currentYearValue = yearSelect.value;
+        yearSelect.innerHTML = '<option value="">All years</option>';
+        years.forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        });
+        yearSelect.value = currentYearValue;
     }
 
     getFilteredPlayers() {
@@ -563,6 +639,24 @@ class FootballManager {
         });
 
         return this.sortPlayers(filtered);
+    }
+
+    getFilteredHistoryPlayers() {
+        if (!this.data) return [];
+        
+        const searchTerm = document.getElementById('history-search-input').value.toLowerCase();
+        const positionFilter = document.getElementById('history-position-filter').value;
+        const yearFilter = document.getElementById('history-year-filter').value;
+
+        let filtered = this.data.playerHistory.filter(player => {
+            const matchesSearch = player.name.toLowerCase().includes(searchTerm) || 
+                                  player.club.toLowerCase().includes(searchTerm);
+            const matchesPosition = !positionFilter || player.position === positionFilter;
+            const matchesYear = !yearFilter || player.year === yearFilter;
+            return matchesSearch && matchesPosition && matchesYear;
+        });
+
+        return this.sortHistoryPlayers(filtered);
     }
 
     getFilteredScoutTargets() {
@@ -600,6 +694,24 @@ class FootballManager {
         });
     }
 
+    sortHistoryPlayers(players) {
+        return players.sort((a, b) => {
+            let aVal = a[this.historySortBy];
+            let bVal = b[this.historySortBy];
+            
+            if (typeof aVal === 'string') {
+                aVal = aVal.toLowerCase();
+                bVal = bVal.toLowerCase();
+            }
+            
+            if (this.historySortOrder === 'asc') {
+                return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+            } else {
+                return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
+            }
+        });
+    }
+
     renderOverview() {
         if (!this.data) return;
         
@@ -623,6 +735,37 @@ class FootballManager {
                 <td>
                     <button class="action-btn edit" onclick="footballManager.showPlayerDetail(${player.id})">View</button>
                     <button class="action-btn edit" onclick="footballManager.showEditPlayer(${player.id})">Edit</button>
+                    <button class="action-btn delete" onclick="footballManager.showRemovePlayer(${player.id})">Remove</button>
+                </td>
+            `;
+            
+            tbody.appendChild(row);
+        });
+    }
+
+    renderHistory() {
+        if (!this.data) return;
+        
+        const tbody = document.getElementById('history-tbody');
+        const players = this.getFilteredHistoryPlayers();
+
+        tbody.innerHTML = '';
+
+        players.forEach(player => {
+            const row = document.createElement('tr');
+            
+            row.innerHTML = `
+                <td><strong>${player.name}</strong></td>
+                <td>${player.position}</td>
+                <td>${player.year}</td>
+                <td><strong>${player.club}</strong></td>
+                <td>${player.age}</td>
+                <td>${this.convertToStars(player.level)}</td>
+                <td>${this.convertToStars(player.potential)}</td>
+                <td>€${player.transferWorth.toLocaleString()}</td>
+                <td>
+                    <button class="action-btn edit" onclick="footballManager.editHistoryPlayer(${player.id})">Edit</button>
+                    <button class="action-btn delete" onclick="footballManager.deleteHistoryPlayer(${player.id})">Delete</button>
                 </td>
             `;
             
@@ -664,6 +807,123 @@ class FootballManager {
             
             tbody.appendChild(row);
         });
+    }
+
+    showRemovePlayer(playerId) {
+        if (!this.data) return;
+        
+        const player = this.data.players.find(p => p.id === playerId);
+        if (!player) return;
+
+        this.playerToRemove = player;
+        document.getElementById('remove-player-name').textContent = player.name;
+        document.getElementById('remove-player-modal').classList.add('show');
+    }
+
+    movePlayerToHistory() {
+        if (!this.playerToRemove) return;
+
+        const currentYear = new Date().getFullYear().toString();
+        const historyPlayer = {
+            ...this.playerToRemove,
+            id: Math.max(0, ...this.data.playerHistory.map(p => p.id)) + 1,
+            year: currentYear,
+            club: "Free Agent" // Default club, can be edited later
+        };
+
+        // Add to history
+        this.data.playerHistory.push(historyPlayer);
+
+        // Remove from current squad and lineup
+        this.data.players = this.data.players.filter(p => p.id !== this.playerToRemove.id);
+        this.data.lineup.starting = this.data.lineup.starting.map(p => p && p.id === this.playerToRemove.id ? null : p);
+        this.data.lineup.bench = this.data.lineup.bench.map(p => p && p.id === this.playerToRemove.id ? null : p);
+
+        this.saveData();
+        this.renderOverview();
+        this.renderHistory();
+        this.renderTactics();
+        this.updatePositionFilters();
+
+        this.playerToRemove = null;
+        document.getElementById('remove-player-modal').classList.remove('show');
+    }
+
+    deletePlayerPermanently() {
+        if (!this.playerToRemove) return;
+
+        // Remove from current squad and lineup
+        this.data.players = this.data.players.filter(p => p.id !== this.playerToRemove.id);
+        this.data.lineup.starting = this.data.lineup.starting.map(p => p && p.id === this.playerToRemove.id ? null : p);
+        this.data.lineup.bench = this.data.lineup.bench.map(p => p && p.id === this.playerToRemove.id ? null : p);
+
+        this.saveData();
+        this.renderOverview();
+        this.renderTactics();
+        this.updatePositionFilters();
+
+        this.playerToRemove = null;
+        document.getElementById('remove-player-modal').classList.remove('show');
+    }
+
+    addHistoryPlayer() {
+        if (!this.data) return;
+        
+        const newPlayer = {
+            id: Math.max(0, ...this.data.playerHistory.map(p => p.id)) + 1,
+            name: document.getElementById('history-player-name').value,
+            position: document.getElementById('history-player-position').value,
+            age: parseInt(document.getElementById('history-player-age').value),
+            level: parseInt(document.getElementById('history-player-level').value),
+            potential: parseInt(document.getElementById('history-player-potential').value),
+            year: document.getElementById('history-player-year').value,
+            club: document.getElementById('history-player-club').value,
+            transferWorth: parseInt(document.getElementById('history-player-transfer').value)
+        };
+
+        this.data.playerHistory.push(newPlayer);
+        this.saveData();
+        this.renderHistory();
+        this.updatePositionFilters();
+
+        document.getElementById('add-history-modal').classList.remove('show');
+        document.getElementById('add-history-form').reset();
+        this.resetAddHistoryForm();
+    }
+
+    editHistoryPlayer(playerId) {
+        if (!this.data) return;
+        
+        const player = this.data.playerHistory.find(p => p.id === playerId);
+        if (!player) return;
+
+        // Use the same form as add history, but populate with existing data
+        document.getElementById('history-player-name').value = player.name;
+        document.getElementById('history-player-position').value = player.position;
+        document.getElementById('history-player-age').value = player.age;
+        document.getElementById('history-player-level').value = player.level;
+        document.getElementById('history-player-potential').value = player.potential;
+        document.getElementById('history-player-year').value = player.year;
+        document.getElementById('history-player-club').value = player.club;
+        document.getElementById('history-player-transfer').value = player.transferWorth;
+
+        // Store the ID for editing
+        document.getElementById('add-history-form').dataset.editId = playerId;
+        document.querySelector('#add-history-modal h3').textContent = 'Edit Former Player';
+        document.querySelector('#add-history-form button[type="submit"]').textContent = 'Save Changes';
+
+        document.getElementById('add-history-modal').classList.add('show');
+    }
+
+    deleteHistoryPlayer(playerId) {
+        if (!this.data) return;
+        
+        if (confirm('Are you sure you want to remove this player from history?')) {
+            this.data.playerHistory = this.data.playerHistory.filter(p => p.id !== playerId);
+            this.saveData();
+            this.renderHistory();
+            this.updatePositionFilters();
+        }
     }
 
     getInterestClass(interest) {
@@ -772,7 +1032,7 @@ class FootballManager {
         if (!this.data) return;
         
         const newPlayer = {
-            id: Math.max(...this.data.players.map(p => p.id)) + 1,
+            id: Math.max(0, ...this.data.players.map(p => p.id)) + 1,
             name: document.getElementById('player-name').value,
             position: document.getElementById('player-position').value,
             age: parseInt(document.getElementById('player-age').value),
@@ -798,21 +1058,52 @@ class FootballManager {
     addScoutTarget() {
         if (!this.data) return;
         
-        const newTarget = {
-            id: Math.max(...this.data.scoutTargets.map(p => p.id)) + 1,
-            name: document.getElementById('scout-name').value,
-            position: document.getElementById('scout-position').value,
-            age: parseInt(document.getElementById('scout-age').value),
-            level: parseInt(document.getElementById('scout-level').value),
-            potential: parseInt(document.getElementById('scout-potential').value),
-            scoutRating: parseFloat(document.getElementById('scout-rating').value),
-            transferInterest: document.getElementById('scout-transfer-interest').value,
-            loanInterest: document.getElementById('scout-loan-interest').value,
-            nextSteps: document.getElementById('scout-next-steps').value,
-            transferWorth: parseInt(document.getElementById('scout-transfer').value)
-        };
+        const formElement = document.getElementById('add-scout-form');
+        const isEditing = formElement.dataset.editId;
+        
+        if (isEditing) {
+            // Edit existing target
+            const targetId = parseInt(formElement.dataset.editId);
+            const targetIndex = this.data.scoutTargets.findIndex(t => t.id === targetId);
+            
+            if (targetIndex !== -1) {
+                this.data.scoutTargets[targetIndex] = {
+                    ...this.data.scoutTargets[targetIndex],
+                    name: document.getElementById('scout-name').value,
+                    position: document.getElementById('scout-position').value,
+                    age: parseInt(document.getElementById('scout-age').value),
+                    level: parseInt(document.getElementById('scout-level').value),
+                    potential: parseInt(document.getElementById('scout-potential').value),
+                    scoutRating: parseFloat(document.getElementById('scout-rating').value),
+                    transferInterest: document.getElementById('scout-transfer-interest').value,
+                    loanInterest: document.getElementById('scout-loan-interest').value,
+                    nextSteps: document.getElementById('scout-next-steps').value,
+                    transferWorth: parseInt(document.getElementById('scout-transfer').value)
+                };
+            }
+            
+            delete formElement.dataset.editId;
+            document.querySelector('#add-scout-modal h3').textContent = 'Add Scout Target';
+            document.querySelector('#add-scout-form button[type="submit"]').textContent = 'Add Target';
+        } else {
+            // Add new target
+            const newTarget = {
+                id: Math.max(0, ...this.data.scoutTargets.map(p => p.id)) + 1,
+                name: document.getElementById('scout-name').value,
+                position: document.getElementById('scout-position').value,
+                age: parseInt(document.getElementById('scout-age').value),
+                level: parseInt(document.getElementById('scout-level').value),
+                potential: parseInt(document.getElementById('scout-potential').value),
+                scoutRating: parseFloat(document.getElementById('scout-rating').value),
+                transferInterest: document.getElementById('scout-transfer-interest').value,
+                loanInterest: document.getElementById('scout-loan-interest').value,
+                nextSteps: document.getElementById('scout-next-steps').value,
+                transferWorth: parseInt(document.getElementById('scout-transfer').value)
+            };
 
-        this.data.scoutTargets.push(newTarget);
+            this.data.scoutTargets.push(newTarget);
+        }
+
         this.saveData();
         this.renderScouting();
         this.updatePositionFilters();
@@ -826,7 +1117,7 @@ class FootballManager {
         if (!this.data) return;
         
         const newPlayer = {
-            id: Math.max(...this.data.players.map(p => p.id)) + 1,
+            id: Math.max(0, ...this.data.players.map(p => p.id)) + 1,
             name: document.getElementById('future-player-name').value,
             position: document.getElementById('future-player-position').value,
             age: parseInt(document.getElementById('future-player-age').value),
@@ -856,6 +1147,13 @@ class FootballManager {
         document.getElementById('player-salary').value = 30000;
         document.getElementById('player-contract').value = 3;
         document.getElementById('player-transfer').value = 1000000;
+    }
+
+    resetAddHistoryForm() {
+        document.getElementById('history-player-age').value = 25;
+        document.getElementById('history-player-level').value = 70;
+        document.getElementById('history-player-potential').value = 75;
+        document.getElementById('history-player-transfer').value = 1000000;
     }
 
     resetAddScoutForm() {
