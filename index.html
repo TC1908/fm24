@@ -138,48 +138,271 @@
                     </div>
                 </div>
 
-                <!-- Player Detail Page -->
+                <!-- Player Detail Page - NEW DESIGN -->
                 <div id="player-detail-tab" class="tab-content">
-                    <div class="player-detail-page">
-                        <div class="player-detail-header">
+                    <div class="player-profile-container">
+                        <div class="player-profile-header">
                             <button id="back-to-overview" class="btn-back">← Back to Squad</button>
-                            <div class="player-detail-title">
-                                <h1 id="player-detail-name">Player Name</h1>
-                                <div class="player-detail-subtitle">
-                                    <span id="player-detail-position">Position</span>
-                                    <span id="player-detail-age">Age</span>
-                                </div>
-                            </div>
                             <button id="edit-player-btn" class="btn-secondary">Edit Player</button>
                         </div>
-                        
-                        <div class="player-detail-content">
-                            <div class="player-stats-grid">
-                                <div class="stat-card">
-                                    <h3>Current Ability</h3>
-                                    <div id="player-current-rating" class="star-rating"></div>
-                                    <div id="player-current-value" class="stat-value"></div>
+
+                        <!-- Player Basic Info -->
+                        <div class="player-basic-info">
+                            <div class="player-photo">
+                                <div class="player-avatar">👤</div>
+                            </div>
+                            <div class="player-main-info">
+                                <h1 id="player-profile-name" class="player-name">Player Name</h1>
+                                <div class="player-meta">
+                                    <span id="player-profile-position" class="player-position">Position</span>
+                                    <span class="separator">•</span>
+                                    <span id="player-profile-age" class="player-age">Age</span>
+                                    <span class="separator">•</span>
+                                    <span class="player-nation">🌍 International</span>
                                 </div>
-                                <div class="stat-card">
-                                    <h3>Potential Ability</h3>
-                                    <div id="player-potential-rating" class="star-rating"></div>
-                                    <div id="player-potential-value" class="stat-value"></div>
+                                <div class="player-summary-stats">
+                                    <div class="summary-stat">
+                                        <span class="stat-label">Current Ability</span>
+                                        <div id="player-profile-current" class="stat-value"></div>
+                                    </div>
+                                    <div class="summary-stat">
+                                        <span class="stat-label">Potential</span>
+                                        <div id="player-profile-potential" class="stat-value"></div>
+                                    </div>
+                                    <div class="summary-stat">
+                                        <span class="stat-label">Market Value</span>
+                                        <div id="player-profile-value" class="stat-value highlight"></div>
+                                    </div>
                                 </div>
-                                <div class="stat-card">
+                            </div>
+                            <div class="player-contract-info">
+                                <div class="contract-section">
                                     <h3>Contract</h3>
-                                    <div id="player-contract-info" class="stat-value"></div>
+                                    <div class="contract-detail">
+                                        <span class="contract-label">Weekly Wage:</span>
+                                        <span id="player-profile-wage" class="contract-value">€0</span>
+                                    </div>
+                                    <div class="contract-detail">
+                                        <span class="contract-label">Contract:</span>
+                                        <span id="player-profile-contract" class="contract-value">0 years</span>
+                                    </div>
+                                    <div class="contract-detail">
+                                        <span class="contract-label">Squad Status:</span>
+                                        <span id="player-profile-status" class="contract-value">Available</span>
+                                    </div>
                                 </div>
-                                <div class="stat-card">
-                                    <h3>Market Value</h3>
-                                    <div id="player-market-value" class="stat-value highlight"></div>
+                            </div>
+                        </div>
+
+                        <!-- Player Stats Grid -->
+                        <div class="player-stats-container">
+                            <div class="stats-column">
+                                <h3 class="stats-header technical">TECHNICAL</h3>
+                                <div class="stat-row">
+                                    <span class="stat-name">Corners</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="15"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">15</span>
+                                    </div>
                                 </div>
-                                <div class="stat-card">
-                                    <h3>Weekly Wage</h3>
-                                    <div id="player-wage" class="stat-value"></div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Crossing</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="12"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">12</span>
+                                    </div>
                                 </div>
-                                <div class="stat-card">
-                                    <h3>Squad Status</h3>
-                                    <div id="player-squad-status" class="stat-value"></div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Dribbling</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="18"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">18</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Finishing</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="16"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">16</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">First Touch</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="17"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">17</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Free Kick Taking</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="8"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">8</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Heading</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="14"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">14</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Long Shots</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="13"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">13</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="stats-column">
+                                <h3 class="stats-header mental">MENTAL</h3>
+                                <div class="stat-row">
+                                    <span class="stat-name">Aggression</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="11"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">11</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Anticipation</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="16"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">16</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Bravery</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="13"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">13</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Composure</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="15"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">15</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Concentration</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="14"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">14</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Decisions</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="17"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">17</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Determination</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="18"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">18</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Flair</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="12"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">12</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="stats-column">
+                                <h3 class="stats-header physical">PHYSICAL</h3>
+                                <div class="stat-row">
+                                    <span class="stat-name">Acceleration</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="16"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">16</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Agility</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="17"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">17</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Balance</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="15"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">15</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Jumping Reach</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="10"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">10</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Natural Fitness</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="14"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">14</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Pace</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="16"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">16</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Stamina</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="15"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">15</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-name">Strength</span>
+                                    <div class="stat-bar-container">
+                                        <div class="stat-bar" data-value="13"><div class="stat-fill"></div></div>
+                                        <span class="stat-number">13</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Position Chart -->
+                        <div class="position-chart-container">
+                            <h3>Preferred Positions</h3>
+                            <div class="position-chart">
+                                <div class="position-field">
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="ST">ST</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="LW">LW</div>
+                                        <div class="position-slot" data-position="CAM">CAM</div>
+                                        <div class="position-slot" data-position="RW">RW</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="CM">CM</div>
+                                        <div class="position-slot" data-position="CM">CM</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="LB">LB</div>
+                                        <div class="position-slot" data-position="CB">CB</div>
+                                        <div class="position-slot" data-position="CB">CB</div>
+                                        <div class="position-slot" data-position="RB">RB</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="GK">GK</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -383,7 +606,7 @@
             </div>
         </div>
 
-        <!-- Add Player Modal -->
+        <!-- Add Player Modal with Range Values -->
         <div id="add-player-modal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -421,11 +644,19 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="player-level">Current Ability (1-99)</label>
-                            <input type="number" id="player-level" min="1" max="99" value="70">
+                            <div class="range-input-group">
+                                <input type="number" id="player-level-min" min="1" max="99" value="70" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="player-level-max" min="1" max="99" value="75" placeholder="Max">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="player-potential">Potential Ability (1-99)</label>
-                            <input type="number" id="player-potential" min="1" max="99" value="75">
+                            <div class="range-input-group">
+                                <input type="number" id="player-potential-min" min="1" max="99" value="75" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="player-potential-max" min="1" max="99" value="80" placeholder="Max">
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -440,7 +671,11 @@
                     </div>
                     <div class="form-group">
                         <label for="player-transfer">Transfer Worth (€)</label>
-                        <input type="number" id="player-transfer" min="0" value="1000000">
+                        <div class="range-input-group">
+                            <input type="number" id="player-transfer-min" min="0" value="800000" placeholder="Min">
+                            <span class="range-separator">-</span>
+                            <input type="number" id="player-transfer-max" min="0" value="1200000" placeholder="Max">
+                        </div>
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="btn-primary">Add Player</button>
@@ -489,11 +724,19 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="edit-player-level">Current Ability (1-99)</label>
-                            <input type="number" id="edit-player-level" min="1" max="99">
+                            <div class="range-input-group">
+                                <input type="number" id="edit-player-level-min" min="1" max="99" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="edit-player-level-max" min="1" max="99" placeholder="Max">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="edit-player-potential">Potential Ability (1-99)</label>
-                            <input type="number" id="edit-player-potential" min="1" max="99">
+                            <div class="range-input-group">
+                                <input type="number" id="edit-player-potential-min" min="1" max="99" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="edit-player-potential-max" min="1" max="99" placeholder="Max">
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -508,7 +751,11 @@
                     </div>
                     <div class="form-group">
                         <label for="edit-player-transfer">Transfer Worth (€)</label>
-                        <input type="number" id="edit-player-transfer" min="0">
+                        <div class="range-input-group">
+                            <input type="number" id="edit-player-transfer-min" min="0" placeholder="Min">
+                            <span class="range-separator">-</span>
+                            <input type="number" id="edit-player-transfer-max" min="0" placeholder="Max">
+                        </div>
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="btn-primary">Save Changes</button>
@@ -584,16 +831,28 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="history-player-level">Current Ability (1-99)</label>
-                            <input type="number" id="history-player-level" min="1" max="99" value="70">
+                            <div class="range-input-group">
+                                <input type="number" id="history-player-level-min" min="1" max="99" value="70" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="history-player-level-max" min="1" max="99" value="75" placeholder="Max">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="history-player-potential">Potential Ability (1-99)</label>
-                            <input type="number" id="history-player-potential" min="1" max="99" value="75">
+                            <div class="range-input-group">
+                                <input type="number" id="history-player-potential-min" min="1" max="99" value="75" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="history-player-potential-max" min="1" max="99" value="80" placeholder="Max">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="history-player-transfer">Transfer Value (€)</label>
-                        <input type="number" id="history-player-transfer" min="0" value="1000000">
+                        <div class="range-input-group">
+                            <input type="number" id="history-player-transfer-min" min="0" value="800000" placeholder="Min">
+                            <span class="range-separator">-</span>
+                            <input type="number" id="history-player-transfer-max" min="0" value="1200000" placeholder="Max">
+                        </div>
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="btn-primary">Add to History</button>
@@ -641,21 +900,37 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="scout-level">Current Ability (1-99)</label>
-                            <input type="number" id="scout-level" min="1" max="99" value="70">
+                            <div class="range-input-group">
+                                <input type="number" id="scout-level-min" min="1" max="99" value="70" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="scout-level-max" min="1" max="99" value="75" placeholder="Max">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="scout-potential">Potential Ability (1-99)</label>
-                            <input type="number" id="scout-potential" min="1" max="99" value="75">
+                            <div class="range-input-group">
+                                <input type="number" id="scout-potential-min" min="1" max="99" value="75" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="scout-potential-max" min="1" max="99" value="80" placeholder="Max">
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="scout-rating">Scout Rating (1-5)</label>
-                            <input type="number" id="scout-rating" min="1" max="5" step="0.5" value="3">
+                            <div class="range-input-group">
+                                <input type="number" id="scout-rating-min" min="1" max="5" step="0.5" value="3" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="scout-rating-max" min="1" max="5" step="0.5" value="3.5" placeholder="Max">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="scout-transfer">Transfer Worth (€)</label>
-                            <input type="number" id="scout-transfer" min="0" value="1000000">
+                            <div class="range-input-group">
+                                <input type="number" id="scout-transfer-min" min="0" value="800000" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="scout-transfer-max" min="0" value="1200000" placeholder="Max">
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -737,11 +1012,19 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="future-player-level">Current Ability (1-99)</label>
-                            <input type="number" id="future-player-level" min="1" max="99" value="60">
+                            <div class="range-input-group">
+                                <input type="number" id="future-player-level-min" min="1" max="99" value="60" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="future-player-level-max" min="1" max="99" value="65" placeholder="Max">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="future-player-potential">Potential Ability (1-99)</label>
-                            <input type="number" id="future-player-potential" min="1" max="99" value="80">
+                            <div class="range-input-group">
+                                <input type="number" id="future-player-potential-min" min="1" max="99" value="80" placeholder="Min">
+                                <span class="range-separator">-</span>
+                                <input type="number" id="future-player-potential-max" min="1" max="99" value="85" placeholder="Max">
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
@@ -756,7 +1039,11 @@
                     </div>
                     <div class="form-group">
                         <label for="future-player-transfer">Transfer Worth (€)</label>
-                        <input type="number" id="future-player-transfer" min="0" value="500000">
+                        <div class="range-input-group">
+                            <input type="number" id="future-player-transfer-min" min="0" value="400000" placeholder="Min">
+                            <span class="range-separator">-</span>
+                            <input type="number" id="future-player-transfer-max" min="0" value="600000" placeholder="Max">
+                        </div>
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="btn-primary">Add Future Player</button>
