@@ -1,6 +1,6 @@
 class FootballManager {
     constructor() {
-        this.data = this.loadData();
+        this.currentCareer = null;
         this.currentTab = 'overview';
         this.formations = this.getFormations();
         this.sortOrder = 'asc';
@@ -10,78 +10,102 @@ class FootballManager {
         this.init();
     }
 
+    // Adjusted formations for VERTICAL field
     getFormations() {
         return {
             '4231': [
-                { x: 50, y: 85, position: 'GK' },
-                { x: 20, y: 65, position: 'LB' }, { x: 36, y: 65, position: 'CB' }, 
-                { x: 64, y: 65, position: 'CB' }, { x: 80, y: 65, position: 'RB' },
+                { x: 50, y: 10, position: 'GK' },  // Goalkeeper at top for vertical
+                { x: 20, y: 25, position: 'LB' }, { x: 36, y: 25, position: 'CB' }, 
+                { x: 64, y: 25, position: 'CB' }, { x: 80, y: 25, position: 'RB' },
                 { x: 35, y: 45, position: 'CDM' }, { x: 65, y: 45, position: 'CDM' },
-                { x: 20, y: 25, position: 'LW' }, { x: 50, y: 25, position: 'CAM' }, 
-                { x: 80, y: 25, position: 'RW' },
-                { x: 50, y: 5, position: 'ST' }
+                { x: 20, y: 65, position: 'LW' }, { x: 50, y: 65, position: 'CAM' }, 
+                { x: 80, y: 65, position: 'RW' },
+                { x: 50, y: 85, position: 'ST' }
             ],
             '433': [
-                { x: 50, y: 85, position: 'GK' },
-                { x: 20, y: 65, position: 'LB' }, { x: 36, y: 65, position: 'CB' }, 
-                { x: 64, y: 65, position: 'CB' }, { x: 80, y: 65, position: 'RB' },
-                { x: 35, y: 40, position: 'CM' }, { x: 50, y: 40, position: 'CM' }, 
-                { x: 65, y: 40, position: 'CM' },
-                { x: 20, y: 15, position: 'LW' }, { x: 50, y: 15, position: 'ST' }, 
-                { x: 80, y: 15, position: 'RW' }
+                { x: 50, y: 10, position: 'GK' },
+                { x: 20, y: 25, position: 'LB' }, { x: 36, y: 25, position: 'CB' }, 
+                { x: 64, y: 25, position: 'CB' }, { x: 80, y: 25, position: 'RB' },
+                { x: 35, y: 50, position: 'CM' }, { x: 50, y: 50, position: 'CM' }, 
+                { x: 65, y: 50, position: 'CM' },
+                { x: 20, y: 75, position: 'LW' }, { x: 50, y: 75, position: 'ST' }, 
+                { x: 80, y: 75, position: 'RW' }
             ],
             '343': [
-                { x: 50, y: 85, position: 'GK' },
-                { x: 30, y: 65, position: 'CB' }, { x: 50, y: 65, position: 'CB' }, 
-                { x: 70, y: 65, position: 'CB' },
-                { x: 15, y: 40, position: 'LM' }, { x: 38, y: 40, position: 'CM' }, 
-                { x: 62, y: 40, position: 'CM' }, { x: 85, y: 40, position: 'RM' },
-                { x: 30, y: 15, position: 'ST' }, { x: 50, y: 15, position: 'ST' }, 
-                { x: 70, y: 15, position: 'ST' }
+                { x: 50, y: 10, position: 'GK' },
+                { x: 30, y: 25, position: 'CB' }, { x: 50, y: 25, position: 'CB' }, 
+                { x: 70, y: 25, position: 'CB' },
+                { x: 15, y: 50, position: 'LM' }, { x: 38, y: 50, position: 'CM' }, 
+                { x: 62, y: 50, position: 'CM' }, { x: 85, y: 50, position: 'RM' },
+                { x: 30, y: 75, position: 'ST' }, { x: 50, y: 75, position: 'ST' }, 
+                { x: 70, y: 75, position: 'ST' }
             ],
             '523': [
-                { x: 50, y: 85, position: 'GK' },
-                { x: 15, y: 65, position: 'LB' }, { x: 30, y: 65, position: 'CB' }, 
-                { x: 50, y: 65, position: 'CB' }, { x: 70, y: 65, position: 'CB' }, 
-                { x: 85, y: 65, position: 'RB' },
-                { x: 35, y: 40, position: 'CM' }, { x: 50, y: 40, position: 'CM' }, 
-                { x: 65, y: 40, position: 'CM' },
-                { x: 35, y: 15, position: 'ST' }, { x: 65, y: 15, position: 'ST' }
+                { x: 50, y: 10, position: 'GK' },
+                { x: 15, y: 25, position: 'LB' }, { x: 30, y: 25, position: 'CB' }, 
+                { x: 50, y: 25, position: 'CB' }, { x: 70, y: 25, position: 'CB' }, 
+                { x: 85, y: 25, position: 'RB' },
+                { x: 35, y: 50, position: 'CM' }, { x: 50, y: 50, position: 'CM' }, 
+                { x: 65, y: 50, position: 'CM' },
+                { x: 35, y: 75, position: 'ST' }, { x: 65, y: 75, position: 'ST' }
             ],
             '442': [
-                { x: 50, y: 85, position: 'GK' },
-                { x: 20, y: 65, position: 'LB' }, { x: 36, y: 65, position: 'CB' }, 
-                { x: 64, y: 65, position: 'CB' }, { x: 80, y: 65, position: 'RB' },
-                { x: 20, y: 35, position: 'LM' }, { x: 40, y: 35, position: 'CM' }, 
-                { x: 60, y: 35, position: 'CM' }, { x: 80, y: 35, position: 'RM' },
-                { x: 40, y: 15, position: 'ST' }, { x: 60, y: 15, position: 'ST' }
+                { x: 50, y: 10, position: 'GK' },
+                { x: 20, y: 25, position: 'LB' }, { x: 36, y: 25, position: 'CB' }, 
+                { x: 64, y: 25, position: 'CB' }, { x: 80, y: 25, position: 'RB' },
+                { x: 20, y: 55, position: 'LM' }, { x: 40, y: 55, position: 'CM' }, 
+                { x: 60, y: 55, position: 'CM' }, { x: 80, y: 55, position: 'RM' },
+                { x: 40, y: 75, position: 'ST' }, { x: 60, y: 75, position: 'ST' }
             ],
             '41212': [
-                { x: 50, y: 85, position: 'GK' },
-                { x: 20, y: 65, position: 'LB' }, { x: 36, y: 65, position: 'CB' }, 
-                { x: 64, y: 65, position: 'CB' }, { x: 80, y: 65, position: 'RB' },
-                { x: 50, y: 50, position: 'CDM' },
-                { x: 35, y: 30, position: 'CM' }, { x: 65, y: 30, position: 'CM' },
-                { x: 50, y: 20, position: 'CAM' },
-                { x: 38, y: 8, position: 'ST' }, { x: 62, y: 8, position: 'ST' }
+                { x: 50, y: 10, position: 'GK' },
+                { x: 20, y: 25, position: 'LB' }, { x: 36, y: 25, position: 'CB' }, 
+                { x: 64, y: 25, position: 'CB' }, { x: 80, y: 25, position: 'RB' },
+                { x: 50, y: 40, position: 'CDM' },
+                { x: 35, y: 55, position: 'CM' }, { x: 65, y: 55, position: 'CM' },
+                { x: 50, y: 70, position: 'CAM' },
+                { x: 38, y: 85, position: 'ST' }, { x: 62, y: 85, position: 'ST' }
             ],
             '424': [
-                { x: 50, y: 85, position: 'GK' },
-                { x: 20, y: 65, position: 'LB' }, { x: 36, y: 65, position: 'CB' }, 
-                { x: 64, y: 65, position: 'CB' }, { x: 80, y: 65, position: 'RB' },
-                { x: 40, y: 35, position: 'CM' }, { x: 60, y: 35, position: 'CM' },
-                { x: 20, y: 15, position: 'LW' }, { x: 40, y: 15, position: 'ST' }, 
-                { x: 60, y: 15, position: 'ST' }, { x: 80, y: 15, position: 'RW' }
+                { x: 50, y: 10, position: 'GK' },
+                { x: 20, y: 25, position: 'LB' }, { x: 36, y: 25, position: 'CB' }, 
+                { x: 64, y: 25, position: 'CB' }, { x: 80, y: 25, position: 'RB' },
+                { x: 40, y: 55, position: 'CM' }, { x: 60, y: 55, position: 'CM' },
+                { x: 20, y: 75, position: 'LW' }, { x: 40, y: 75, position: 'ST' }, 
+                { x: 60, y: 75, position: 'ST' }, { x: 80, y: 75, position: 'RW' }
             ]
         };
     }
 
-    loadData() {
-        const saved = localStorage.getItem('footballManagerData');
+    loadCareers() {
+        const saved = localStorage.getItem('footballManagerCareers');
         if (saved) {
             return JSON.parse(saved);
         }
-        
+        return [];
+    }
+
+    saveCareers(careers) {
+        localStorage.setItem('footballManagerCareers', JSON.stringify(careers));
+    }
+
+    getCurrentCareerData() {
+        if (!this.currentCareer) return null;
+        const careers = this.loadCareers();
+        return careers.find(c => c.id === this.currentCareer);
+    }
+
+    saveCurrentCareerData(data) {
+        if (!this.currentCareer) return;
+        const careers = this.loadCareers();
+        const careerIndex = careers.findIndex(c => c.id === this.currentCareer);
+        if (careerIndex !== -1) {
+            careers[careerIndex].data = data;
+            this.saveCareers(careers);
+        }
+    }
+
+    getDefaultCareerData() {
         return {
             players: [
                 { id: 1, name: "Marcus Johnson", position: "GK", age: 28, level: 85, potential: 87, salary: 75000, contractDuration: 3, transferWorth: 2500000 },
@@ -121,20 +145,213 @@ class FootballManager {
         };
     }
 
-    saveData() {
-        localStorage.setItem('footballManagerData', JSON.stringify(this.data));
+    init() {
+        this.renderCareerSelection();
+        this.setupEventListeners();
     }
 
-    init() {
-        this.setupEventListeners();
-        this.renderOverview();
-        this.renderTactics();
-        this.renderPlanning();
-        this.renderScouting();
-        this.updatePositionFilters();
+    renderCareerSelection() {
+        const careers = this.loadCareers();
+        const careersGrid = document.getElementById('careers-grid');
+        const noCareers = document.getElementById('no-careers');
+
+        if (careers.length === 0) {
+            careersGrid.style.display = 'none';
+            noCareers.style.display = 'block';
+        } else {
+            careersGrid.style.display = 'grid';
+            noCareers.style.display = 'none';
+            
+            careersGrid.innerHTML = '';
+            careers.forEach(career => {
+                const careerCard = this.createCareerCard(career);
+                careersGrid.appendChild(careerCard);
+            });
+        }
+    }
+
+    createCareerCard(career) {
+        const card = document.createElement('div');
+        card.className = 'career-card';
+        
+        const playerCount = career.data.players ? career.data.players.length : 0;
+        const scoutCount = career.data.scoutTargets ? career.data.scoutTargets.length : 0;
+        
+        card.innerHTML = `
+            <div class="career-card-header">
+                <div>
+                    <div class="career-card-title">${career.name}</div>
+                    <div class="career-card-team">${career.teamName}</div>
+                </div>
+                <div class="career-card-actions">
+                    <button class="career-action-btn edit" onclick="footballManager.editCareer(${career.id})" title="Edit Career">✏️</button>
+                    <button class="career-action-btn delete" onclick="footballManager.deleteCareer(${career.id})" title="Delete Career">🗑️</button>
+                </div>
+            </div>
+            <div class="career-card-description">${career.description || 'No description available'}</div>
+            <div class="career-card-stats">
+                <div class="career-stat">
+                    <div class="career-stat-value">${playerCount}</div>
+                    <div class="career-stat-label">Players</div>
+                </div>
+                <div class="career-stat">
+                    <div class="career-stat-value">${scoutCount}</div>
+                    <div class="career-stat-label">Scouts</div>
+                </div>
+                <div class="career-stat">
+                    <div class="career-stat-value">${new Date(career.created).toLocaleDateString()}</div>
+                    <div class="career-stat-label">Created</div>
+                </div>
+            </div>
+        `;
+
+        card.addEventListener('click', (e) => {
+            if (!e.target.classList.contains('career-action-btn')) {
+                this.loadCareer(career.id);
+            }
+        });
+
+        return card;
+    }
+
+    loadCareer(careerId) {
+        const careers = this.loadCareers();
+        const career = careers.find(c => c.id === careerId);
+        
+        if (career) {
+            this.currentCareer = careerId;
+            this.data = career.data;
+            
+            // Update UI to show current career name
+            document.getElementById('current-career-name').textContent = career.name;
+            
+            // Show squad manager and hide career selection
+            document.getElementById('career-selection').style.display = 'none';
+            document.getElementById('squad-manager').style.display = 'block';
+            
+            // Initialize squad manager components
+            this.renderOverview();
+            this.renderTactics();
+            this.renderPlanning();
+            this.renderScouting();
+            this.updatePositionFilters();
+        }
+    }
+
+    backToCareers() {
+        // Hide squad manager and show career selection
+        document.getElementById('squad-manager').style.display = 'none';
+        document.getElementById('career-selection').style.display = 'block';
+        
+        this.currentCareer = null;
+        this.data = null;
+        
+        // Re-render career selection to show updated stats
+        this.renderCareerSelection();
+    }
+
+    createCareer(name, teamName, description) {
+        const careers = this.loadCareers();
+        const newCareer = {
+            id: Date.now(),
+            name: name,
+            teamName: teamName,
+            description: description,
+            created: new Date().toISOString(),
+            data: this.getDefaultCareerData()
+        };
+        
+        careers.push(newCareer);
+        this.saveCareers(careers);
+        this.renderCareerSelection();
+        return newCareer;
+    }
+
+    editCareer(careerId) {
+        const careers = this.loadCareers();
+        const career = careers.find(c => c.id === careerId);
+        
+        if (career) {
+            // Populate edit form (reuse create career modal)
+            document.getElementById('career-name').value = career.name;
+            document.getElementById('team-name').value = career.teamName;
+            document.getElementById('career-description').value = career.description || '';
+            
+            // Store career ID for editing
+            document.getElementById('create-career-form').dataset.editId = careerId;
+            document.querySelector('#create-career-modal h3').textContent = 'Edit Career';
+            document.querySelector('#create-career-form button[type="submit"]').textContent = 'Save Changes';
+            
+            document.getElementById('create-career-modal').classList.add('show');
+        }
+    }
+
+    deleteCareer(careerId) {
+        if (confirm('Are you sure you want to delete this career? This action cannot be undone.')) {
+            const careers = this.loadCareers();
+            const filteredCareers = careers.filter(c => c.id !== careerId);
+            this.saveCareers(filteredCareers);
+            this.renderCareerSelection();
+        }
+    }
+
+    saveData() {
+        if (this.currentCareer && this.data) {
+            this.saveCurrentCareerData(this.data);
+        }
     }
 
     setupEventListeners() {
+        // Career management
+        document.getElementById('create-career-btn').addEventListener('click', () => {
+            // Reset form for creating new career
+            document.getElementById('create-career-form').reset();
+            delete document.getElementById('create-career-form').dataset.editId;
+            document.querySelector('#create-career-modal h3').textContent = 'Create New Career';
+            document.querySelector('#create-career-form button[type="submit"]').textContent = 'Create Career';
+            
+            document.getElementById('create-career-modal').classList.add('show');
+        });
+
+        document.getElementById('create-career-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('career-name').value;
+            const teamName = document.getElementById('team-name').value;
+            const description = document.getElementById('career-description').value;
+            const formElement = e.target;
+            
+            if (formElement.dataset.editId) {
+                // Edit existing career
+                const careerId = parseInt(formElement.dataset.editId);
+                const careers = this.loadCareers();
+                const careerIndex = careers.findIndex(c => c.id === careerId);
+                
+                if (careerIndex !== -1) {
+                    careers[careerIndex].name = name;
+                    careers[careerIndex].teamName = teamName;
+                    careers[careerIndex].description = description;
+                    this.saveCareers(careers);
+                    this.renderCareerSelection();
+                }
+                
+                delete formElement.dataset.editId;
+            } else {
+                // Create new career
+                this.createCareer(name, teamName, description);
+            }
+            
+            document.getElementById('create-career-modal').classList.remove('show');
+        });
+
+        document.getElementById('cancel-career').addEventListener('click', () => {
+            document.getElementById('create-career-modal').classList.remove('show');
+        });
+
+        document.getElementById('back-to-careers').addEventListener('click', () => {
+            this.backToCareers();
+        });
+
         // Navigation
         document.querySelectorAll('.nav-tab').forEach(tab => {
             tab.addEventListener('click', (e) => {
@@ -302,6 +519,8 @@ class FootballManager {
     }
 
     updatePositionFilters() {
+        if (!this.data) return;
+
         const positions = [...new Set(this.data.players.map(p => p.position))].sort();
         const scoutPositions = [...new Set(this.data.scoutTargets.map(p => p.position))].sort();
         const allPositions = [...new Set([...positions, ...scoutPositions])].sort();
@@ -332,6 +551,8 @@ class FootballManager {
     }
 
     getFilteredPlayers() {
+        if (!this.data) return [];
+        
         const searchTerm = document.getElementById('search-input').value.toLowerCase();
         const positionFilter = document.getElementById('position-filter').value;
 
@@ -345,6 +566,8 @@ class FootballManager {
     }
 
     getFilteredScoutTargets() {
+        if (!this.data) return [];
+        
         const searchTerm = document.getElementById('scout-search-input').value.toLowerCase();
         const positionFilter = document.getElementById('scout-position-filter').value;
         const ratingFilter = document.getElementById('scout-rating-filter').value;
@@ -378,6 +601,8 @@ class FootballManager {
     }
 
     renderOverview() {
+        if (!this.data) return;
+        
         const tbody = document.getElementById('players-tbody');
         const players = this.getFilteredPlayers();
 
@@ -406,6 +631,8 @@ class FootballManager {
     }
 
     renderScouting() {
+        if (!this.data) return;
+        
         const tbody = document.getElementById('scout-targets-tbody');
         const targets = this.getFilteredScoutTargets();
 
@@ -456,6 +683,8 @@ class FootballManager {
     }
 
     showPlayerDetail(playerId) {
+        if (!this.data) return;
+        
         const player = this.data.players.find(p => p.id === playerId);
         if (!player) return;
 
@@ -487,6 +716,8 @@ class FootballManager {
     }
 
     showEditPlayer(playerId) {
+        if (!this.data) return;
+        
         const player = this.data.players.find(p => p.id === playerId);
         if (!player) return;
 
@@ -504,6 +735,8 @@ class FootballManager {
     }
 
     editPlayer() {
+        if (!this.data) return;
+        
         const playerId = parseInt(document.getElementById('edit-player-id').value);
         const playerIndex = this.data.players.findIndex(p => p.id === playerId);
         
@@ -536,6 +769,8 @@ class FootballManager {
     }
 
     addPlayer() {
+        if (!this.data) return;
+        
         const newPlayer = {
             id: Math.max(...this.data.players.map(p => p.id)) + 1,
             name: document.getElementById('player-name').value,
@@ -561,6 +796,8 @@ class FootballManager {
     }
 
     addScoutTarget() {
+        if (!this.data) return;
+        
         const newTarget = {
             id: Math.max(...this.data.scoutTargets.map(p => p.id)) + 1,
             name: document.getElementById('scout-name').value,
@@ -586,6 +823,8 @@ class FootballManager {
     }
 
     addFuturePlayer() {
+        if (!this.data) return;
+        
         const newPlayer = {
             id: Math.max(...this.data.players.map(p => p.id)) + 1,
             name: document.getElementById('future-player-name').value,
@@ -637,6 +876,8 @@ class FootballManager {
     }
 
     editScoutTarget(targetId) {
+        if (!this.data) return;
+        
         const target = this.data.scoutTargets.find(t => t.id === targetId);
         if (!target) return;
 
@@ -661,6 +902,8 @@ class FootballManager {
     }
 
     deleteScoutTarget(targetId) {
+        if (!this.data) return;
+        
         if (confirm('Are you sure you want to remove this scout target?')) {
             this.data.scoutTargets = this.data.scoutTargets.filter(t => t.id !== targetId);
             this.saveData();
@@ -670,6 +913,8 @@ class FootballManager {
     }
 
     advanceSeasons() {
+        if (!this.data) return;
+        
         const seasons = Object.keys(this.data.futurePlanning);
         const currentSeason = seasons[0];
         const newThirdSeason = this.getNextSeason(seasons[2]);
@@ -696,6 +941,8 @@ class FootballManager {
     }
 
     changeFormation(formation) {
+        if (!this.data) return;
+        
         this.data.formation = formation;
         this.data.lineup.starting = Array(11).fill(null);
         this.saveData();
@@ -708,6 +955,8 @@ class FootballManager {
     }
 
     renderTactics() {
+        if (!this.data) return;
+        
         this.renderFieldPositions();
         this.renderBenchPositions();
         this.renderAvailablePlayers();
@@ -715,6 +964,8 @@ class FootballManager {
     }
 
     renderFieldPositions() {
+        if (!this.data) return;
+        
         const container = document.getElementById('field-positions');
         const formation = this.formations[this.data.formation];
         
@@ -837,6 +1088,8 @@ class FootballManager {
     }
 
     renderBenchPositions() {
+        if (!this.data) return;
+        
         const container = document.getElementById('bench-positions');
         container.innerHTML = '';
 
@@ -869,6 +1122,8 @@ class FootballManager {
     }
 
     renderAvailablePlayers() {
+        if (!this.data) return;
+        
         const container = document.getElementById('available-players');
         container.innerHTML = '';
 
@@ -950,6 +1205,8 @@ class FootballManager {
     }
 
     renderPlanning() {
+        if (!this.data) return;
+        
         const container = document.getElementById('planning-seasons');
         const seasons = Object.keys(this.data.futurePlanning);
         const categories = [
@@ -1041,6 +1298,8 @@ class FootballManager {
     }
 
     removeFromPlanning(season, category, playerId) {
+        if (!this.data) return;
+        
         this.data.futurePlanning[season][category] = this.data.futurePlanning[season][category].filter(p => p.id !== playerId);
         this.saveData();
         this.renderPlanning();
