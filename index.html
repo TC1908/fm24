@@ -70,6 +70,10 @@
                             <span class="nav-icon">📅</span>
                             Planning
                         </button>
+                        <button class="nav-tab" data-tab="history">
+                            <span class="nav-icon">📚</span>
+                            History
+                        </button>
                         <button class="nav-tab" data-tab="scouting">
                             <span class="nav-icon">🔍</span>
                             Scouting
@@ -239,6 +243,64 @@
                     </div>
                 </div>
 
+                <!-- Player History Tab -->
+                <div id="history-tab" class="tab-content">
+                    <div class="page-header">
+                        <h2>Player History</h2>
+                        <div class="history-controls">
+                            <select id="history-year-filter" class="filter-select">
+                                <option value="">All years</option>
+                            </select>
+                            <button id="add-history-player-btn" class="btn-primary">
+                                <span>+</span> Add Former Player
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="controls-section">
+                        <div class="search-controls">
+                            <div class="search-box">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" id="history-search-input" placeholder="Search former players..." class="search-input">
+                            </div>
+                            <select id="history-position-filter" class="filter-select">
+                                <option value="">All positions</option>
+                            </select>
+                            <div class="sort-controls">
+                                <select id="history-sort-select" class="sort-select">
+                                    <option value="name">Name</option>
+                                    <option value="position">Position</option>
+                                    <option value="year">Year</option>
+                                    <option value="club">Club</option>
+                                    <option value="age">Age</option>
+                                    <option value="level">Level</option>
+                                </select>
+                                <button id="history-sort-order" class="sort-order-btn">↑</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="players-table-container">
+                        <table class="players-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Pos</th>
+                                    <th>Year</th>
+                                    <th>Club</th>
+                                    <th>Age</th>
+                                    <th>Level</th>
+                                    <th>Potential</th>
+                                    <th>Transfer Value</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
                 <!-- Scouting Tab -->
                 <div id="scouting-tab" class="tab-content">
                     <div class="page-header">
@@ -321,7 +383,6 @@
             </div>
         </div>
 
-        <!-- All previous modals remain the same -->
         <!-- Add Player Modal -->
         <div id="add-player-modal" class="modal">
             <div class="modal-content">
@@ -452,6 +513,91 @@
                     <div class="form-actions">
                         <button type="submit" class="btn-primary">Save Changes</button>
                         <button type="button" class="btn-secondary" id="cancel-edit">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Remove Player Modal -->
+        <div id="remove-player-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Remove Player</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="remove-player-content">
+                    <p>What would you like to do with <strong id="remove-player-name">Player Name</strong>?</p>
+                    <div class="remove-options">
+                        <button id="move-to-history-btn" class="btn-primary">Move to History</button>
+                        <button id="delete-permanently-btn" class="btn-danger">Delete Permanently</button>
+                        <button id="cancel-remove-btn" class="btn-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add History Player Modal -->
+        <div id="add-history-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add Former Player</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <form id="add-history-form" class="player-form">
+                    <div class="form-group">
+                        <label for="history-player-name">Name *</label>
+                        <input type="text" id="history-player-name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="history-player-position">Position</label>
+                            <select id="history-player-position">
+                                <option value="GK">GK</option>
+                                <option value="CB">CB</option>
+                                <option value="LB">LB</option>
+                                <option value="RB">RB</option>
+                                <option value="CDM">CDM</option>
+                                <option value="CM">CM</option>
+                                <option value="CAM">CAM</option>
+                                <option value="LW">LW</option>
+                                <option value="RW">RW</option>
+                                <option value="ST">ST</option>
+                                <option value="LM">LM</option>
+                                <option value="RM">RM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="history-player-age">Age</label>
+                            <input type="number" id="history-player-age" min="16" max="40" value="25">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="history-player-year">Year *</label>
+                            <input type="text" id="history-player-year" placeholder="e.g., 2024" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="history-player-club">Club *</label>
+                            <input type="text" id="history-player-club" placeholder="e.g., Real Madrid" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="history-player-level">Current Ability (1-99)</label>
+                            <input type="number" id="history-player-level" min="1" max="99" value="70">
+                        </div>
+                        <div class="form-group">
+                            <label for="history-player-potential">Potential Ability (1-99)</label>
+                            <input type="number" id="history-player-potential" min="1" max="99" value="75">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="history-player-transfer">Transfer Value (€)</label>
+                        <input type="number" id="history-player-transfer" min="0" value="1000000">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Add to History</button>
+                        <button type="button" class="btn-secondary" id="cancel-history">Cancel</button>
                     </div>
                 </form>
             </div>
