@@ -111,33 +111,27 @@ class FootballManager {
     getDefaultCareerData() {
         return {
             players: [
-                { id: 1, name: "Marcus Johnson", position: "GK", age: 28, level: 85, potential: 87, salary: 75000, contractDuration: 3, transferWorth: 2500000 },
-                { id: 2, name: "David Silva", position: "CB", age: 26, level: 82, potential: 88, salary: 65000, contractDuration: 4, transferWorth: 3200000 },
-                { id: 3, name: "Oliver Thompson", position: "CB", age: 24, level: 78, potential: 85, salary: 45000, contractDuration: 5, transferWorth: 2100000 },
-                { id: 4, name: "Lucas Martinez", position: "LB", age: 22, level: 76, potential: 83, salary: 35000, contractDuration: 4, transferWorth: 1800000 },
-                { id: 5, name: "Ryan Anderson", position: "RB", age: 27, level: 80, potential: 82, salary: 50000, contractDuration: 2, transferWorth: 2200000 },
-                { id: 6, name: "James Wilson", position: "CDM", age: 29, level: 86, potential: 87, salary: 85000, contractDuration: 2, transferWorth: 3800000 },
-                { id: 7, name: "Alex Rodriguez", position: "CM", age: 25, level: 83, potential: 89, salary: 70000, contractDuration: 3, transferWorth: 4200000 },
-                { id: 8, name: "Michael Brown", position: "CAM", age: 23, level: 79, potential: 87, salary: 55000, contractDuration: 4, transferWorth: 3500000 },
-                { id: 9, name: "Noah Garcia", position: "LW", age: 21, level: 75, potential: 88, salary: 40000, contractDuration: 5, transferWorth: 2800000 },
-                { id: 10, name: "Ethan Davis", position: "RW", age: 26, level: 81, potential: 84, salary: 60000, contractDuration: 3, transferWorth: 3000000 },
-                { id: 11, name: "Sebastian Lee", position: "ST", age: 24, level: 84, potential: 90, salary: 90000, contractDuration: 4, transferWorth: 5200000 },
-                { id: 12, name: "Carlos Vega", position: "GK", age: 32, level: 79, potential: 79, salary: 40000, contractDuration: 1, transferWorth: 800000 },
-                { id: 13, name: "Pedro Santos", position: "CB", age: 30, level: 77, potential: 78, salary: 38000, contractDuration: 2, transferWorth: 1200000 },
-                { id: 14, name: "Marco Rossi", position: "CM", age: 19, level: 68, potential: 84, salary: 15000, contractDuration: 5, transferWorth: 1500000 },
-                { id: 15, name: "Ahmed Hassan", position: "ST", age: 20, level: 72, potential: 86, salary: 25000, contractDuration: 4, transferWorth: 2000000 },
-                { id: 16, name: "Ivan Petrov", position: "LW", age: 28, level: 76, potential: 77, salary: 42000, contractDuration: 2, transferWorth: 1600000 },
-                { id: 17, name: "Jean Dupont", position: "RB", age: 25, level: 74, potential: 80, salary: 32000, contractDuration: 3, transferWorth: 1400000 },
-                { id: 18, name: "Kim Min-jun", position: "CAM", age: 22, level: 77, potential: 85, salary: 48000, contractDuration: 4, transferWorth: 2600000 }
+                { id: 1, name: "Marcus Johnson", position: "GK", age: 28, level: { min: 83, max: 87 }, potential: { min: 85, max: 89 }, salary: 75000, contractDuration: 3, transferWorth: { min: 2200000, max: 2800000 } },
+                { id: 2, name: "David Silva", position: "CB", age: 26, level: { min: 80, max: 84 }, potential: { min: 86, max: 90 }, salary: 65000, contractDuration: 4, transferWorth: { min: 2800000, max: 3600000 } },
+                { id: 3, name: "Oliver Thompson", position: "CB", age: 24, level: { min: 76, max: 80 }, potential: { min: 83, max: 87 }, salary: 45000, contractDuration: 5, transferWorth: { min: 1800000, max: 2400000 } },
+                { id: 4, name: "Lucas Martinez", position: "LB", age: 22, level: { min: 74, max: 78 }, potential: { min: 81, max: 85 }, salary: 35000, contractDuration: 4, transferWorth: { min: 1500000, max: 2100000 } },
+                { id: 5, name: "Ryan Anderson", position: "RB", age: 27, level: { min: 78, max: 82 }, potential: { min: 80, max: 84 }, salary: 50000, contractDuration: 2, transferWorth: { min: 1900000, max: 2500000 } },
+                { id: 6, name: "James Wilson", position: "CDM", age: 29, level: { min: 84, max: 88 }, potential: { min: 85, max: 89 }, salary: 85000, contractDuration: 2, transferWorth: { min: 3500000, max: 4100000 } },
+                { id: 7, name: "Alex Rodriguez", position: "CM", age: 25, level: { min: 81, max: 85 }, potential: { min: 87, max: 91 }, salary: 70000, contractDuration: 3, transferWorth: { min: 3800000, max: 4600000 } },
+                { id: 8, name: "Michael Brown", position: "CAM", age: 23, level: { min: 77, max: 81 }, potential: { min: 85, max: 89 }, salary: 55000, contractDuration: 4, transferWorth: { min: 3200000, max: 3800000 } },
+                { id: 9, name: "Noah Garcia", position: "LW", age: 21, level: { min: 73, max: 77 }, potential: { min: 86, max: 90 }, salary: 40000, contractDuration: 5, transferWorth: { min: 2500000, max: 3100000 } },
+                { id: 10, name: "Ethan Davis", position: "RW", age: 26, level: { min: 79, max: 83 }, potential: { min: 82, max: 86 }, salary: 60000, contractDuration: 3, transferWorth: { min: 2700000, max: 3300000 } },
+                { id: 11, name: "Sebastian Lee", position: "ST", age: 24, level: { min: 82, max: 86 }, potential: { min: 88, max: 92 }, salary: 90000, contractDuration: 4, transferWorth: { min: 4800000, max: 5600000 } },
+                { id: 12, name: "Carlos Vega", position: "GK", age: 32, level: { min: 77, max: 81 }, potential: { min: 77, max: 81 }, salary: 40000, contractDuration: 1, transferWorth: { min: 600000, max: 1000000 } }
             ],
             scoutTargets: [
-                { id: 1001, name: "João Silva", position: "LW", age: 20, level: 75, potential: 88, scoutRating: 4.5, transferInterest: "High", loanInterest: "Medium", nextSteps: "Make Approach", transferWorth: 2800000 },
-                { id: 1002, name: "Pierre Dubois", position: "CM", age: 23, level: 80, potential: 86, scoutRating: 4, transferInterest: "Medium", loanInterest: "Low", nextSteps: "Continue Monitoring", transferWorth: 3500000 },
-                { id: 1003, name: "Hans Mueller", position: "CB", age: 26, level: 83, potential: 85, scoutRating: 3.5, transferInterest: "Low", loanInterest: "Very Low", nextSteps: "On Hold", transferWorth: 4200000 }
+                { id: 1001, name: "João Silva", position: "LW", age: 20, level: { min: 73, max: 77 }, potential: { min: 86, max: 90 }, scoutRating: { min: 4, max: 5 }, transferInterest: "High", loanInterest: "Medium", nextSteps: "Make Approach", transferWorth: { min: 2500000, max: 3100000 } },
+                { id: 1002, name: "Pierre Dubois", position: "CM", age: 23, level: { min: 78, max: 82 }, potential: { min: 84, max: 88 }, scoutRating: { min: 3.5, max: 4.5 }, transferInterest: "Medium", loanInterest: "Low", nextSteps: "Continue Monitoring", transferWorth: { min: 3200000, max: 3800000 } },
+                { id: 1003, name: "Hans Mueller", position: "CB", age: 26, level: { min: 81, max: 85 }, potential: { min: 83, max: 87 }, scoutRating: { min: 3, max: 4 }, transferInterest: "Low", loanInterest: "Very Low", nextSteps: "On Hold", transferWorth: { min: 3900000, max: 4500000 } }
             ],
             playerHistory: [
-                { id: 2001, name: "Roberto Carlos", position: "LB", age: 35, level: 88, potential: 88, year: "2023", club: "Real Madrid", transferWorth: 15000000 },
-                { id: 2002, name: "Andrea Pirlo", position: "CM", age: 40, level: 92, potential: 92, year: "2022", club: "Juventus", transferWorth: 25000000 }
+                { id: 2001, name: "Roberto Carlos", position: "LB", age: 35, level: { min: 86, max: 90 }, potential: { min: 86, max: 90 }, year: "2023", club: "Real Madrid", transferWorth: { min: 14000000, max: 16000000 } },
+                { id: 2002, name: "Andrea Pirlo", position: "CM", age: 40, level: { min: 90, max: 94 }, potential: { min: 90, max: 94 }, year: "2022", club: "Juventus", transferWorth: { min: 23000000, max: 27000000 } }
             ],
             formation: '4231',
             lineup: {
@@ -306,6 +300,63 @@ class FootballManager {
     saveData() {
         if (this.currentCareer && this.data) {
             this.saveCurrentCareerData(this.data);
+        }
+    }
+
+    // RANGE VALUE UTILITIES
+    formatRangeValue(range, type = 'number') {
+        if (typeof range === 'object' && range.min !== undefined && range.max !== undefined) {
+            if (range.min === range.max) {
+                if (type === 'currency') {
+                    return this.formatCurrency(range.min);
+                } else if (type === 'stars') {
+                    return this.convertToStars(range.min);
+                }
+                return range.min.toString();
+            } else {
+                if (type === 'currency') {
+                    return `${this.formatCurrency(range.min)} - ${this.formatCurrency(range.max)}`;
+                } else if (type === 'stars') {
+                    return `${this.convertToStars(range.min)} - ${this.convertToStars(range.max)}`;
+                }
+                return `${range.min} - ${range.max}`;
+            }
+        }
+        // Fallback for old single values
+        if (type === 'currency') {
+            return this.formatCurrency(range);
+        } else if (type === 'stars') {
+            return this.convertToStars(range);
+        }
+        return range.toString();
+    }
+
+    formatCurrency(value) {
+        if (value >= 1000000) {
+            return `€${(value / 1000000).toFixed(1)}M`;
+        } else if (value >= 1000) {
+            return `€${(value / 1000).toFixed(0)}K`;
+        }
+        return `€${value.toLocaleString()}`;
+    }
+
+    getRangeFromInputs(minId, maxId) {
+        const min = parseFloat(document.getElementById(minId).value) || 0;
+        const max = parseFloat(document.getElementById(maxId).value) || min;
+        
+        if (min === max) {
+            return min;
+        }
+        return { min: Math.min(min, max), max: Math.max(min, max) };
+    }
+
+    setRangeInputs(range, minId, maxId) {
+        if (typeof range === 'object' && range.min !== undefined && range.max !== undefined) {
+            document.getElementById(minId).value = range.min;
+            document.getElementById(maxId).value = range.max;
+        } else {
+            document.getElementById(minId).value = range;
+            document.getElementById(maxId).value = range;
         }
     }
 
@@ -669,7 +720,17 @@ class FootballManager {
         let filtered = this.data.scoutTargets.filter(target => {
             const matchesSearch = target.name.toLowerCase().includes(searchTerm);
             const matchesPosition = !positionFilter || target.position === positionFilter;
-            const matchesRating = !ratingFilter || target.scoutRating >= parseFloat(ratingFilter);
+            
+            // Handle range scout rating
+            let matchesRating = true;
+            if (ratingFilter) {
+                const minRating = parseFloat(ratingFilter);
+                if (typeof target.scoutRating === 'object') {
+                    matchesRating = target.scoutRating.max >= minRating;
+                } else {
+                    matchesRating = target.scoutRating >= minRating;
+                }
+            }
             return matchesSearch && matchesPosition && matchesRating;
         });
 
@@ -680,6 +741,14 @@ class FootballManager {
         return players.sort((a, b) => {
             let aVal = a[this.sortBy];
             let bVal = b[this.sortBy];
+            
+            // Handle range values for sorting
+            if (typeof aVal === 'object' && aVal.min !== undefined) {
+                aVal = (aVal.min + aVal.max) / 2; // Use average for sorting
+            }
+            if (typeof bVal === 'object' && bVal.min !== undefined) {
+                bVal = (bVal.min + bVal.max) / 2;
+            }
             
             if (typeof aVal === 'string') {
                 aVal = aVal.toLowerCase();
@@ -698,6 +767,14 @@ class FootballManager {
         return players.sort((a, b) => {
             let aVal = a[this.historySortBy];
             let bVal = b[this.historySortBy];
+            
+            // Handle range values for sorting
+            if (typeof aVal === 'object' && aVal.min !== undefined) {
+                aVal = (aVal.min + aVal.max) / 2;
+            }
+            if (typeof bVal === 'object' && bVal.min !== undefined) {
+                bVal = (bVal.min + bVal.max) / 2;
+            }
             
             if (typeof aVal === 'string') {
                 aVal = aVal.toLowerCase();
@@ -727,11 +804,11 @@ class FootballManager {
                 <td><strong>${player.name}</strong></td>
                 <td>${player.position}</td>
                 <td>${player.age}</td>
-                <td>${this.convertToStars(player.level)}</td>
-                <td>${this.convertToStars(player.potential)}</td>
+                <td>${this.formatRangeValue(player.level, 'stars')}</td>
+                <td>${this.formatRangeValue(player.potential, 'stars')}</td>
                 <td>€${player.salary.toLocaleString()}</td>
                 <td>${player.contractDuration}y</td>
-                <td>€${player.transferWorth.toLocaleString()}</td>
+                <td>${this.formatRangeValue(player.transferWorth, 'currency')}</td>
                 <td>
                     <button class="action-btn edit" onclick="footballManager.showPlayerDetail(${player.id})">View</button>
                     <button class="action-btn edit" onclick="footballManager.showEditPlayer(${player.id})">Edit</button>
@@ -760,9 +837,9 @@ class FootballManager {
                 <td>${player.year}</td>
                 <td><strong>${player.club}</strong></td>
                 <td>${player.age}</td>
-                <td>${this.convertToStars(player.level)}</td>
-                <td>${this.convertToStars(player.potential)}</td>
-                <td>€${player.transferWorth.toLocaleString()}</td>
+                <td>${this.formatRangeValue(player.level, 'stars')}</td>
+                <td>${this.formatRangeValue(player.potential, 'stars')}</td>
+                <td>${this.formatRangeValue(player.transferWorth, 'currency')}</td>
                 <td>
                     <button class="action-btn edit" onclick="footballManager.editHistoryPlayer(${player.id})">Edit</button>
                     <button class="action-btn delete" onclick="footballManager.deleteHistoryPlayer(${player.id})">Delete</button>
@@ -792,13 +869,13 @@ class FootballManager {
                 <td><strong>${target.name}</strong></td>
                 <td>${target.position}</td>
                 <td>${target.age}</td>
-                <td>${this.convertToStars(target.level)}</td>
-                <td>${this.convertToStars(target.potential)}</td>
-                <td>${this.convertToStars(target.scoutRating * 20)}</td>
+                <td>${this.formatRangeValue(target.level, 'stars')}</td>
+                <td>${this.formatRangeValue(target.potential, 'stars')}</td>
+                <td>${this.formatRangeValue(target.scoutRating, 'stars')}</td>
                 <td class="${interestClass}">${target.transferInterest}</td>
                 <td class="${loanInterestClass}">${target.loanInterest}</td>
                 <td class="${stepsClass}">${target.nextSteps}</td>
-                <td>€${target.transferWorth.toLocaleString()}</td>
+                <td>${this.formatRangeValue(target.transferWorth, 'currency')}</td>
                 <td>
                     <button class="action-btn edit" onclick="footballManager.editScoutTarget(${target.id})">Edit</button>
                     <button class="action-btn delete" onclick="footballManager.deleteScoutTarget(${target.id})">Remove</button>
@@ -869,19 +946,48 @@ class FootballManager {
     addHistoryPlayer() {
         if (!this.data) return;
         
-        const newPlayer = {
-            id: Math.max(0, ...this.data.playerHistory.map(p => p.id)) + 1,
-            name: document.getElementById('history-player-name').value,
-            position: document.getElementById('history-player-position').value,
-            age: parseInt(document.getElementById('history-player-age').value),
-            level: parseInt(document.getElementById('history-player-level').value),
-            potential: parseInt(document.getElementById('history-player-potential').value),
-            year: document.getElementById('history-player-year').value,
-            club: document.getElementById('history-player-club').value,
-            transferWorth: parseInt(document.getElementById('history-player-transfer').value)
-        };
+        const formElement = document.getElementById('add-history-form');
+        const isEditing = formElement.dataset.editId;
+        
+        if (isEditing) {
+            // Edit existing history player
+            const playerId = parseInt(formElement.dataset.editId);
+            const playerIndex = this.data.playerHistory.findIndex(p => p.id === playerId);
+            
+            if (playerIndex !== -1) {
+                this.data.playerHistory[playerIndex] = {
+                    ...this.data.playerHistory[playerIndex],
+                    name: document.getElementById('history-player-name').value,
+                    position: document.getElementById('history-player-position').value,
+                    age: parseInt(document.getElementById('history-player-age').value),
+                    level: this.getRangeFromInputs('history-player-level-min', 'history-player-level-max'),
+                    potential: this.getRangeFromInputs('history-player-potential-min', 'history-player-potential-max'),
+                    year: document.getElementById('history-player-year').value,
+                    club: document.getElementById('history-player-club').value,
+                    transferWorth: this.getRangeFromInputs('history-player-transfer-min', 'history-player-transfer-max')
+                };
+            }
+            
+            delete formElement.dataset.editId;
+            document.querySelector('#add-history-modal h3').textContent = 'Add Former Player';
+            document.querySelector('#add-history-form button[type="submit"]').textContent = 'Add to History';
+        } else {
+            // Add new history player
+            const newPlayer = {
+                id: Math.max(0, ...this.data.playerHistory.map(p => p.id)) + 1,
+                name: document.getElementById('history-player-name').value,
+                position: document.getElementById('history-player-position').value,
+                age: parseInt(document.getElementById('history-player-age').value),
+                level: this.getRangeFromInputs('history-player-level-min', 'history-player-level-max'),
+                potential: this.getRangeFromInputs('history-player-potential-min', 'history-player-potential-max'),
+                year: document.getElementById('history-player-year').value,
+                club: document.getElementById('history-player-club').value,
+                transferWorth: this.getRangeFromInputs('history-player-transfer-min', 'history-player-transfer-max')
+            };
 
-        this.data.playerHistory.push(newPlayer);
+            this.data.playerHistory.push(newPlayer);
+        }
+
         this.saveData();
         this.renderHistory();
         this.updatePositionFilters();
@@ -901,11 +1007,11 @@ class FootballManager {
         document.getElementById('history-player-name').value = player.name;
         document.getElementById('history-player-position').value = player.position;
         document.getElementById('history-player-age').value = player.age;
-        document.getElementById('history-player-level').value = player.level;
-        document.getElementById('history-player-potential').value = player.potential;
+        this.setRangeInputs(player.level, 'history-player-level-min', 'history-player-level-max');
+        this.setRangeInputs(player.potential, 'history-player-potential-min', 'history-player-potential-max');
         document.getElementById('history-player-year').value = player.year;
         document.getElementById('history-player-club').value = player.club;
-        document.getElementById('history-player-transfer').value = player.transferWorth;
+        this.setRangeInputs(player.transferWorth, 'history-player-transfer-min', 'history-player-transfer-max');
 
         // Store the ID for editing
         document.getElementById('add-history-form').dataset.editId = playerId;
@@ -942,25 +1048,26 @@ class FootballManager {
         return stepMap[steps] || 'steps-continue';
     }
 
+    // NEW PLAYER DETAIL RENDERING
     showPlayerDetail(playerId) {
         if (!this.data) return;
         
         const player = this.data.players.find(p => p.id === playerId);
         if (!player) return;
 
-        document.getElementById('player-detail-name').textContent = player.name;
-        document.getElementById('player-detail-position').textContent = player.position;
-        document.getElementById('player-detail-age').textContent = `${player.age} years old`;
+        // Update basic info
+        document.getElementById('player-profile-name').textContent = player.name;
+        document.getElementById('player-profile-position').textContent = player.position;
+        document.getElementById('player-profile-age').textContent = `${player.age} years old`;
         
-        document.getElementById('player-current-rating').innerHTML = this.convertToStars(player.level);
-        document.getElementById('player-current-value').textContent = `${player.level}/99`;
+        // Update summary stats
+        document.getElementById('player-profile-current').innerHTML = this.formatRangeValue(player.level, 'stars');
+        document.getElementById('player-profile-potential').innerHTML = this.formatRangeValue(player.potential, 'stars');
+        document.getElementById('player-profile-value').textContent = this.formatRangeValue(player.transferWorth, 'currency');
         
-        document.getElementById('player-potential-rating').innerHTML = this.convertToStars(player.potential);
-        document.getElementById('player-potential-value').textContent = `${player.potential}/99`;
-        
-        document.getElementById('player-contract-info').textContent = `${player.contractDuration} years remaining`;
-        document.getElementById('player-market-value').textContent = `€${player.transferWorth.toLocaleString()}`;
-        document.getElementById('player-wage').textContent = `€${player.salary.toLocaleString()}/week`;
+        // Update contract info
+        document.getElementById('player-profile-wage').textContent = `€${player.salary.toLocaleString()}`;
+        document.getElementById('player-profile-contract').textContent = `${player.contractDuration} years`;
         
         // Determine squad status
         const isInStarting = this.data.lineup.starting.some(p => p && p.id === player.id);
@@ -969,10 +1076,134 @@ class FootballManager {
         if (isInStarting) status = 'Starting XI';
         else if (isOnBench) status = 'On bench';
         
-        document.getElementById('player-squad-status').textContent = status;
+        document.getElementById('player-profile-status').textContent = status;
+        
+        // Update stats bars
+        this.updatePlayerStatBars(player);
+        
+        // Update position chart
+        this.updatePositionChart(player);
+        
         document.getElementById('edit-player-btn').dataset.playerId = player.id;
 
         this.switchTab('player-detail');
+    }
+
+    updatePlayerStatBars(player) {
+        // Generate random stats based on player level
+        const avgLevel = typeof player.level === 'object' ? (player.level.min + player.level.max) / 2 : player.level;
+        const variance = 6; // How much stats can vary from average
+        
+        // Generate stats with some randomness but based on player level
+        const stats = {
+            // Technical
+            corners: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            crossing: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            dribbling: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            finishing: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            firstTouch: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            freeKick: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            heading: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            longShots: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            
+            // Mental
+            aggression: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            anticipation: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            bravery: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            composure: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            concentration: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            decisions: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            determination: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            flair: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            
+            // Physical
+            acceleration: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            agility: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            balance: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            jumpingReach: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            naturalFitness: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            pace: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            stamina: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2))),
+            strength: Math.max(1, Math.min(20, Math.floor(avgLevel * 0.2 + Math.random() * variance - variance/2)))
+        };
+
+        // Update all stat bars
+        document.querySelectorAll('.stat-row').forEach((row, index) => {
+            const statBar = row.querySelector('.stat-bar');
+            const statFill = row.querySelector('.stat-fill');
+            const statNumber = row.querySelector('.stat-number');
+            
+            const statNames = Object.keys(stats);
+            if (index < statNames.length) {
+                const statValue = stats[statNames[index]];
+                const percentage = (statValue / 20) * 100;
+                
+                statBar.dataset.value = statValue;
+                statFill.style.width = `${percentage}%`;
+                statNumber.textContent = statValue;
+                
+                // Color coding based on value
+                if (statValue >= 16) {
+                    statFill.style.backgroundColor = '#39998E'; // Excellent
+                } else if (statValue >= 12) {
+                    statFill.style.backgroundColor = '#FFDC6C'; // Good
+                } else if (statValue >= 8) {
+                    statFill.style.backgroundColor = '#FFAA67'; // Average
+                } else {
+                    statFill.style.backgroundColor = '#DA674A'; // Poor
+                }
+            }
+        });
+    }
+
+    updatePositionChart(player) {
+        // Color code position slots based on player's position
+        document.querySelectorAll('.position-slot').forEach(slot => {
+            const slotPosition = slot.dataset.position;
+            slot.className = 'position-slot';
+            
+            if (slotPosition === player.position) {
+                slot.classList.add('excellent');
+            } else if (this.isCompatiblePosition(player.position, slotPosition)) {
+                slot.classList.add('good');
+            } else if (this.isSimilarPosition(player.position, slotPosition)) {
+                slot.classList.add('average');
+            }
+        });
+    }
+
+    isCompatiblePosition(playerPos, slotPos) {
+        const compatible = {
+            'LB': ['LM'],
+            'RB': ['RM'],
+            'CB': ['CDM'],
+            'CDM': ['CM', 'CB'],
+            'CM': ['CDM', 'CAM'],
+            'CAM': ['CM', 'LW', 'RW'],
+            'LW': ['LM', 'CAM'],
+            'RW': ['RM', 'CAM'],
+            'LM': ['LB', 'LW'],
+            'RM': ['RB', 'RW']
+        };
+        
+        return compatible[playerPos]?.includes(slotPos) || false;
+    }
+
+    isSimilarPosition(playerPos, slotPos) {
+        const similar = {
+            'CB': ['LB', 'RB'],
+            'LB': ['CB', 'RB'],
+            'RB': ['CB', 'LB'],
+            'CDM': ['LB', 'RB'],
+            'CM': ['LM', 'RM'],
+            'LM': ['CM', 'CAM'],
+            'RM': ['CM', 'CAM'],
+            'LW': ['ST'],
+            'RW': ['ST'],
+            'ST': ['LW', 'RW', 'CAM']
+        };
+        
+        return similar[playerPos]?.includes(slotPos) || false;
     }
 
     showEditPlayer(playerId) {
@@ -985,11 +1216,11 @@ class FootballManager {
         document.getElementById('edit-player-name').value = player.name;
         document.getElementById('edit-player-position').value = player.position;
         document.getElementById('edit-player-age').value = player.age;
-        document.getElementById('edit-player-level').value = player.level;
-        document.getElementById('edit-player-potential').value = player.potential;
+        this.setRangeInputs(player.level, 'edit-player-level-min', 'edit-player-level-max');
+        this.setRangeInputs(player.potential, 'edit-player-potential-min', 'edit-player-potential-max');
         document.getElementById('edit-player-salary').value = player.salary;
         document.getElementById('edit-player-contract').value = player.contractDuration;
-        document.getElementById('edit-player-transfer').value = player.transferWorth;
+        this.setRangeInputs(player.transferWorth, 'edit-player-transfer-min', 'edit-player-transfer-max');
 
         document.getElementById('edit-player-modal').classList.add('show');
     }
@@ -1007,11 +1238,11 @@ class FootballManager {
             name: document.getElementById('edit-player-name').value,
             position: document.getElementById('edit-player-position').value,
             age: parseInt(document.getElementById('edit-player-age').value),
-            level: parseInt(document.getElementById('edit-player-level').value),
-            potential: parseInt(document.getElementById('edit-player-potential').value),
+            level: this.getRangeFromInputs('edit-player-level-min', 'edit-player-level-max'),
+            potential: this.getRangeFromInputs('edit-player-potential-min', 'edit-player-potential-max'),
             salary: parseInt(document.getElementById('edit-player-salary').value),
             contractDuration: parseInt(document.getElementById('edit-player-contract').value),
-            transferWorth: parseInt(document.getElementById('edit-player-transfer').value)
+            transferWorth: this.getRangeFromInputs('edit-player-transfer-min', 'edit-player-transfer-max')
         };
 
         this.saveData();
@@ -1036,11 +1267,11 @@ class FootballManager {
             name: document.getElementById('player-name').value,
             position: document.getElementById('player-position').value,
             age: parseInt(document.getElementById('player-age').value),
-            level: parseInt(document.getElementById('player-level').value),
-            potential: parseInt(document.getElementById('player-potential').value),
+            level: this.getRangeFromInputs('player-level-min', 'player-level-max'),
+            potential: this.getRangeFromInputs('player-potential-min', 'player-potential-max'),
             salary: parseInt(document.getElementById('player-salary').value),
             contractDuration: parseInt(document.getElementById('player-contract').value),
-            transferWorth: parseInt(document.getElementById('player-transfer').value)
+            transferWorth: this.getRangeFromInputs('player-transfer-min', 'player-transfer-max')
         };
 
         this.data.players.push(newPlayer);
@@ -1072,13 +1303,13 @@ class FootballManager {
                     name: document.getElementById('scout-name').value,
                     position: document.getElementById('scout-position').value,
                     age: parseInt(document.getElementById('scout-age').value),
-                    level: parseInt(document.getElementById('scout-level').value),
-                    potential: parseInt(document.getElementById('scout-potential').value),
-                    scoutRating: parseFloat(document.getElementById('scout-rating').value),
+                    level: this.getRangeFromInputs('scout-level-min', 'scout-level-max'),
+                    potential: this.getRangeFromInputs('scout-potential-min', 'scout-potential-max'),
+                    scoutRating: this.getRangeFromInputs('scout-rating-min', 'scout-rating-max'),
                     transferInterest: document.getElementById('scout-transfer-interest').value,
                     loanInterest: document.getElementById('scout-loan-interest').value,
                     nextSteps: document.getElementById('scout-next-steps').value,
-                    transferWorth: parseInt(document.getElementById('scout-transfer').value)
+                    transferWorth: this.getRangeFromInputs('scout-transfer-min', 'scout-transfer-max')
                 };
             }
             
@@ -1092,13 +1323,13 @@ class FootballManager {
                 name: document.getElementById('scout-name').value,
                 position: document.getElementById('scout-position').value,
                 age: parseInt(document.getElementById('scout-age').value),
-                level: parseInt(document.getElementById('scout-level').value),
-                potential: parseInt(document.getElementById('scout-potential').value),
-                scoutRating: parseFloat(document.getElementById('scout-rating').value),
+                level: this.getRangeFromInputs('scout-level-min', 'scout-level-max'),
+                potential: this.getRangeFromInputs('scout-potential-min', 'scout-potential-max'),
+                scoutRating: this.getRangeFromInputs('scout-rating-min', 'scout-rating-max'),
                 transferInterest: document.getElementById('scout-transfer-interest').value,
                 loanInterest: document.getElementById('scout-loan-interest').value,
                 nextSteps: document.getElementById('scout-next-steps').value,
-                transferWorth: parseInt(document.getElementById('scout-transfer').value)
+                transferWorth: this.getRangeFromInputs('scout-transfer-min', 'scout-transfer-max')
             };
 
             this.data.scoutTargets.push(newTarget);
@@ -1121,11 +1352,11 @@ class FootballManager {
             name: document.getElementById('future-player-name').value,
             position: document.getElementById('future-player-position').value,
             age: parseInt(document.getElementById('future-player-age').value),
-            level: parseInt(document.getElementById('future-player-level').value),
-            potential: parseInt(document.getElementById('future-player-potential').value),
+            level: this.getRangeFromInputs('future-player-level-min', 'future-player-level-max'),
+            potential: this.getRangeFromInputs('future-player-potential-min', 'future-player-potential-max'),
             salary: parseInt(document.getElementById('future-player-salary').value),
             contractDuration: parseInt(document.getElementById('future-player-contract').value),
-            transferWorth: parseInt(document.getElementById('future-player-transfer').value)
+            transferWorth: this.getRangeFromInputs('future-player-transfer-min', 'future-player-transfer-max')
         };
 
         this.data.players.push(newPlayer);
@@ -1142,35 +1373,48 @@ class FootballManager {
 
     resetAddPlayerForm() {
         document.getElementById('player-age').value = 20;
-        document.getElementById('player-level').value = 70;
-        document.getElementById('player-potential').value = 75;
+        this.setRangeInputs(70, 'player-level-min', 'player-level-max');
+        document.getElementById('player-level-max').value = 75;
+        this.setRangeInputs(75, 'player-potential-min', 'player-potential-max');
+        document.getElementById('player-potential-max').value = 80;
         document.getElementById('player-salary').value = 30000;
         document.getElementById('player-contract').value = 3;
-        document.getElementById('player-transfer').value = 1000000;
+        this.setRangeInputs(800000, 'player-transfer-min', 'player-transfer-max');
+        document.getElementById('player-transfer-max').value = 1200000;
     }
 
     resetAddHistoryForm() {
         document.getElementById('history-player-age').value = 25;
-        document.getElementById('history-player-level').value = 70;
-        document.getElementById('history-player-potential').value = 75;
-        document.getElementById('history-player-transfer').value = 1000000;
+        this.setRangeInputs(70, 'history-player-level-min', 'history-player-level-max');
+        document.getElementById('history-player-level-max').value = 75;
+        this.setRangeInputs(75, 'history-player-potential-min', 'history-player-potential-max');
+        document.getElementById('history-player-potential-max').value = 80;
+        this.setRangeInputs(800000, 'history-player-transfer-min', 'history-player-transfer-max');
+        document.getElementById('history-player-transfer-max').value = 1200000;
     }
 
     resetAddScoutForm() {
         document.getElementById('scout-age').value = 22;
-        document.getElementById('scout-level').value = 70;
-        document.getElementById('scout-potential').value = 75;
-        document.getElementById('scout-rating').value = 3;
-        document.getElementById('scout-transfer').value = 1000000;
+        this.setRangeInputs(70, 'scout-level-min', 'scout-level-max');
+        document.getElementById('scout-level-max').value = 75;
+        this.setRangeInputs(75, 'scout-potential-min', 'scout-potential-max');
+        document.getElementById('scout-potential-max').value = 80;
+        this.setRangeInputs(3, 'scout-rating-min', 'scout-rating-max');
+        document.getElementById('scout-rating-max').value = 3.5;
+        this.setRangeInputs(800000, 'scout-transfer-min', 'scout-transfer-max');
+        document.getElementById('scout-transfer-max').value = 1200000;
     }
 
     resetAddFuturePlayerForm() {
         document.getElementById('future-player-age').value = 18;
-        document.getElementById('future-player-level').value = 60;
-        document.getElementById('future-player-potential').value = 80;
+        this.setRangeInputs(60, 'future-player-level-min', 'future-player-level-max');
+        document.getElementById('future-player-level-max').value = 65;
+        this.setRangeInputs(80, 'future-player-potential-min', 'future-player-potential-max');
+        document.getElementById('future-player-potential-max').value = 85;
         document.getElementById('future-player-salary').value = 20000;
         document.getElementById('future-player-contract').value = 5;
-        document.getElementById('future-player-transfer').value = 500000;
+        this.setRangeInputs(400000, 'future-player-transfer-min', 'future-player-transfer-max');
+        document.getElementById('future-player-transfer-max').value = 600000;
     }
 
     editScoutTarget(targetId) {
@@ -1183,13 +1427,13 @@ class FootballManager {
         document.getElementById('scout-name').value = target.name;
         document.getElementById('scout-position').value = target.position;
         document.getElementById('scout-age').value = target.age;
-        document.getElementById('scout-level').value = target.level;
-        document.getElementById('scout-potential').value = target.potential;
-        document.getElementById('scout-rating').value = target.scoutRating;
+        this.setRangeInputs(target.level, 'scout-level-min', 'scout-level-max');
+        this.setRangeInputs(target.potential, 'scout-potential-min', 'scout-potential-max');
+        this.setRangeInputs(target.scoutRating, 'scout-rating-min', 'scout-rating-max');
         document.getElementById('scout-transfer-interest').value = target.transferInterest;
         document.getElementById('scout-loan-interest').value = target.loanInterest;
         document.getElementById('scout-next-steps').value = target.nextSteps;
-        document.getElementById('scout-transfer').value = target.transferWorth;
+        this.setRangeInputs(target.transferWorth, 'scout-transfer-min', 'scout-transfer-max');
 
         // Store the ID for editing
         document.getElementById('add-scout-form').dataset.editId = targetId;
@@ -1352,15 +1596,15 @@ class FootballManager {
                     </div>
                     <div class="player-info-item">
                         <span class="player-info-label">Current Level</span>
-                        <span class="player-info-value">${this.convertToStars(player.level)}</span>
+                        <span class="player-info-value">${this.formatRangeValue(player.level, 'stars')}</span>
                     </div>
                     <div class="player-info-item">
                         <span class="player-info-label">Potential</span>
-                        <span class="player-info-value">${this.convertToStars(player.potential)}</span>
+                        <span class="player-info-value">${this.formatRangeValue(player.potential, 'stars')}</span>
                     </div>
                     <div class="player-info-item">
                         <span class="player-info-label">Transfer Value</span>
-                        <span class="player-info-value">€${player.transferWorth.toLocaleString()}</span>
+                        <span class="player-info-value">${this.formatRangeValue(player.transferWorth, 'currency')}</span>
                     </div>
                     <div class="player-info-item">
                         <span class="player-info-label">Weekly Wage</span>
@@ -1456,8 +1700,8 @@ class FootballManager {
             <div class="player-card-details">
                 <div>Position: ${player.position}</div>
                 <div>Age: ${player.age}</div>
-                <div>Level: ${this.convertToStars(player.level)}</div>
-                <div>Potential: ${this.convertToStars(player.potential)}</div>
+                <div>Level: ${this.formatRangeValue(player.level, 'stars')}</div>
+                <div>Potential: ${this.formatRangeValue(player.potential, 'stars')}</div>
             </div>
         `;
 
