@@ -378,6 +378,18 @@ body {
     gap: 1rem;
 }
 
+/* History Year Selector */
+.history-year-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.history-year-selector label {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
 /* Buttons */
 .btn-primary, .btn-secondary, .btn-back, .btn-danger {
     padding: 0.75rem 1.5rem;
@@ -540,6 +552,109 @@ body {
     text-align: center;
 }
 
+/* Position Checkboxes */
+.positions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.position-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.position-checkbox:hover {
+    background: var(--hover-bg);
+    border-color: var(--accent-primary);
+}
+
+.position-checkbox input[type="checkbox"] {
+    margin: 0;
+}
+
+.position-checkbox input[type="checkbox"]:checked + label {
+    color: var(--accent-primary);
+    font-weight: bold;
+}
+
+.position-checkbox label {
+    margin: 0;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+/* Attributes Container */
+.attributes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.attribute-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.attribute-column h4 {
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-primary);
+}
+
+.attribute-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.attribute-row label {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.attribute-row input {
+    width: 80px;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--secondary-bg);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.attribute-row input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(57, 153, 142, 0.1);
+}
+
+/* Form Help Text */
+.form-help {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
 /* Tables */
 .players-table-container {
     background: var(--card-bg);
@@ -610,7 +725,7 @@ body {
     color: transparent;
 }
 
-/* NEW PLAYER PROFILE DESIGN */
+/* PLAYER PROFILE DESIGN */
 .player-profile-container {
     background: var(--card-bg);
     border-radius: 12px;
@@ -799,6 +914,11 @@ body {
     border-bottom-color: var(--color-salmon);
 }
 
+.stats-header.goalkeeper {
+    color: var(--color-orange);
+    border-bottom-color: var(--color-orange);
+}
+
 .stat-row {
     display: flex;
     justify-content: space-between;
@@ -892,25 +1012,16 @@ body {
     font-size: 0.7rem;
     font-weight: bold;
     color: var(--color-dark-slate);
-    background: var(--text-muted);
+    background: #888; /* Gray by default */
     transition: all 0.3s ease;
 }
 
-.position-slot.excellent {
-    background: var(--success);
-    color: white;
-    border-color: var(--color-yellow);
-    transform: scale(1.1);
-}
-
-.position-slot.good {
-    background: var(--accent-secondary);
+.position-slot.gold {
+    background: var(--color-yellow);
     color: var(--color-dark-slate);
-}
-
-.position-slot.average {
-    background: var(--accent-orange);
-    color: white;
+    border-color: var(--color-orange);
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 220, 108, 0.5);
 }
 
 /* Scout Notes Section */
@@ -962,6 +1073,7 @@ body {
     padding: 0.5rem;
     margin-bottom: 2rem;
     border: 1px solid var(--border-color);
+    overflow-x: auto;
 }
 
 .form-tab {
@@ -974,6 +1086,8 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 500;
+    white-space: nowrap;
+    min-width: 120px;
 }
 
 .form-tab:hover {
@@ -998,6 +1112,11 @@ body {
 /* Large Modal */
 .large-modal {
     max-width: 800px;
+    max-height: 90vh;
+}
+
+.extra-large-modal {
+    max-width: 1000px;
     max-height: 90vh;
 }
 
@@ -1052,11 +1171,11 @@ body {
     flex: 1;
 }
 
-/* VERTICAL FOOTBALL FIELD */
+/* VERTICAL FOOTBALL FIELD - GOALKEEPER AT BOTTOM */
 .football-field {
     position: relative;
     width: 100%;
-    height: 800px; /* Increased height for vertical field */
+    height: 800px;
     background: var(--field-gradient);
     border-radius: 12px;
     overflow: hidden;
@@ -1079,10 +1198,10 @@ body {
         /* Goal areas (top and bottom) */
         linear-gradient(to right, #4a7c59 0px, #4a7c59 2px, transparent 2px, transparent calc(50% - 100px), #4a7c59 calc(50% - 100px), #4a7c59 calc(50% - 98px), transparent calc(50% - 98px), transparent calc(50% + 98px), #4a7c59 calc(50% + 98px), #4a7c59 calc(50% + 100px), transparent calc(50% + 100px), transparent calc(100% - 2px), #4a7c59 calc(100% - 2px)),
         linear-gradient(to right, transparent calc(50% - 120px), #4a7c59 calc(50% - 120px), #4a7c59 calc(50% - 118px), transparent calc(50% - 118px), transparent calc(50% + 118px), #4a7c59 calc(50% + 118px), #4a7c59 calc(50% + 120px), transparent calc(50% + 120px)),
-        /* Goal areas bottom */
-        linear-gradient(to bottom, transparent calc(100% - 80px), #4a7c59 calc(100% - 80px), #4a7c59 calc(100% - 78px), transparent calc(100% - 78px)),
         /* Goal areas top */
-        linear-gradient(to bottom, #4a7c59 0px, #4a7c59 2px, transparent 2px, transparent 78px, #4a7c59 78px, #4a7c59 80px, transparent 80px);
+        linear-gradient(to bottom, #4a7c59 0px, #4a7c59 2px, transparent 2px, transparent 78px, #4a7c59 78px, #4a7c59 80px, transparent 80px),
+        /* Goal areas bottom */
+        linear-gradient(to bottom, transparent calc(100% - 80px), #4a7c59 calc(100% - 80px), #4a7c59 calc(100% - 78px), transparent calc(100% - 78px));
     background-size: 
         100% 100%, 
         100% 100%, 
@@ -1095,8 +1214,8 @@ body {
         0 0, 
         0 0, 
         0 0,
-        0 100%,
-        0 0;
+        0 0,
+        0 100%;
     background-repeat: no-repeat;
 }
 
@@ -1686,6 +1805,10 @@ body {
     .scout-notes-grid {
         grid-template-columns: 1fr;
     }
+
+    .attributes-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -1722,7 +1845,7 @@ body {
     }
     
     .form-tab {
-        min-width: 120px;
+        min-width: 100px;
     }
 }
 
@@ -1754,6 +1877,7 @@ body {
     
     .planning-controls, .history-controls {
         justify-content: center;
+        flex-wrap: wrap;
     }
     
     .search-controls {
@@ -1818,6 +1942,10 @@ body {
     .form-tab {
         min-width: auto;
     }
+
+    .positions-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 @media (max-width: 480px) {
@@ -1877,6 +2005,10 @@ body {
 
     .scout-notes-container {
         padding: 1.5rem;
+    }
+
+    .positions-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
