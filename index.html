@@ -138,7 +138,7 @@
                     </div>
                 </div>
 
-                <!-- Player Detail Page - NEW DESIGN -->
+                <!-- Player Detail Page -->
                 <div id="player-detail-tab" class="tab-content">
                     <div class="player-profile-container">
                         <div class="player-profile-header">
@@ -217,28 +217,166 @@
                         <!-- Player Stats Grid -->
                         <div class="player-stats-container">
                             <div class="stats-column">
-                                <h3 class="stats-header technical">TECHNICAL</h3>
-                                <div id="technical-stats">
+                                <h3 class="stats-header technical" id="stats-header-1">TECHNICAL</h3>
+                                <div id="stats-column-1">
                                     <!-- Dynamic stats will be inserted here -->
                                 </div>
                             </div>
 
                             <div class="stats-column">
-                                <h3 class="stats-header mental">MENTAL</h3>
-                                <div id="mental-stats">
+                                <h3 class="stats-header mental" id="stats-header-2">MENTAL</h3>
+                                <div id="stats-column-2">
                                     <!-- Dynamic stats will be inserted here -->
                                 </div>
                             </div>
 
                             <div class="stats-column">
-                                <h3 class="stats-header physical">PHYSICAL</h3>
-                                <div id="physical-stats">
+                                <h3 class="stats-header physical" id="stats-header-3">PHYSICAL</h3>
+                                <div id="stats-column-3">
                                     <!-- Dynamic stats will be inserted here -->
                                 </div>
                             </div>
                         </div>
 
                         <!-- Position Chart -->
+                        <div class="position-chart-container">
+                            <h3>Preferred Positions</h3>
+                            <div class="position-chart">
+                                <div class="position-field">
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="ST">ST</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="LW">LW</div>
+                                        <div class="position-slot" data-position="CAM">CAM</div>
+                                        <div class="position-slot" data-position="RW">RW</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="CM">CM</div>
+                                        <div class="position-slot" data-position="CM">CM</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="LB">LB</div>
+                                        <div class="position-slot" data-position="CB">CB</div>
+                                        <div class="position-slot" data-position="CB">CB</div>
+                                        <div class="position-slot" data-position="RB">RB</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="GK">GK</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Player Detail Page -->
+                <div id="history-detail-tab" class="tab-content">
+                    <div class="player-profile-container">
+                        <div class="player-profile-header">
+                            <button id="back-to-history" class="btn-back">← Back to History</button>
+                            <div class="history-year-selector">
+                                <label for="history-detail-year">Year:</label>
+                                <select id="history-detail-year" class="filter-select">
+                                    <!-- Years will be populated by JavaScript -->
+                                </select>
+                                <button id="edit-history-player-btn" class="btn-secondary">Edit Player</button>
+                            </div>
+                        </div>
+
+                        <!-- Same structure as player detail but with year selector -->
+                        <div class="player-basic-info">
+                            <div class="player-photo">
+                                <div class="player-avatar">👤</div>
+                            </div>
+                            <div class="player-main-info">
+                                <h1 id="history-profile-name" class="player-name">Player Name</h1>
+                                <div class="player-meta">
+                                    <span id="history-profile-position" class="player-position">Position</span>
+                                    <span class="separator">•</span>
+                                    <span id="history-profile-age" class="player-age">Age</span>
+                                    <span class="separator">•</span>
+                                    <span id="history-profile-nationality" class="player-nation">🌍 <span class="nationality-text">International</span></span>
+                                </div>
+                                <div class="player-summary-stats">
+                                    <div class="summary-stat">
+                                        <span class="stat-label">Current Ability</span>
+                                        <div id="history-profile-current" class="stat-value"></div>
+                                    </div>
+                                    <div class="summary-stat">
+                                        <span class="stat-label">Potential</span>
+                                        <div id="history-profile-potential" class="stat-value"></div>
+                                    </div>
+                                    <div class="summary-stat">
+                                        <span class="stat-label">Market Value</span>
+                                        <div id="history-profile-value" class="stat-value highlight"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="player-contract-info">
+                                <div class="contract-section">
+                                    <h3>Club Information</h3>
+                                    <div class="contract-detail">
+                                        <span class="contract-label">Club:</span>
+                                        <span id="history-profile-club" class="contract-value">Unknown</span>
+                                    </div>
+                                    <div class="contract-detail">
+                                        <span class="contract-label">Year:</span>
+                                        <span id="history-profile-year" class="contract-value">2024</span>
+                                    </div>
+                                    <div class="contract-detail">
+                                        <span class="contract-label">Value:</span>
+                                        <span id="history-profile-transfer-value" class="contract-value">€0</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="player-bio-section">
+                                    <h3>Player Information</h3>
+                                    <div class="contract-detail">
+                                        <span class="contract-label">Height:</span>
+                                        <span id="history-profile-height" class="contract-value">180cm</span>
+                                    </div>
+                                    <div class="contract-detail">
+                                        <span class="contract-label">Weight:</span>
+                                        <span id="history-profile-weight" class="contract-value">75kg</span>
+                                    </div>
+                                    <div class="contract-detail">
+                                        <span class="contract-label">Foot:</span>
+                                        <span id="history-profile-foot" class="contract-value">Right</span>
+                                    </div>
+                                    <div class="contract-detail">
+                                        <span class="contract-label">Media Description:</span>
+                                        <span id="history-profile-media" class="contract-value">Striker</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- History Player Stats Grid -->
+                        <div class="player-stats-container">
+                            <div class="stats-column">
+                                <h3 class="stats-header technical" id="history-stats-header-1">TECHNICAL</h3>
+                                <div id="history-stats-column-1">
+                                    <!-- Dynamic stats will be inserted here -->
+                                </div>
+                            </div>
+
+                            <div class="stats-column">
+                                <h3 class="stats-header mental" id="history-stats-header-2">MENTAL</h3>
+                                <div id="history-stats-column-2">
+                                    <!-- Dynamic stats will be inserted here -->
+                                </div>
+                            </div>
+
+                            <div class="stats-column">
+                                <h3 class="stats-header physical" id="history-stats-header-3">PHYSICAL</h3>
+                                <div id="history-stats-column-3">
+                                    <!-- Dynamic stats will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- History Position Chart -->
                         <div class="position-chart-container">
                             <h3>Preferred Positions</h3>
                             <div class="position-chart">
@@ -317,6 +455,7 @@
                     <div class="page-header">
                         <h2>Future Squad Planning</h2>
                         <div class="planning-controls">
+                            <button id="previous-season-btn" class="btn-secondary">← Previous Season</button>
                             <button id="add-season-player-btn" class="btn-secondary">Add Future Player</button>
                             <button id="advance-seasons-btn" class="btn-primary">Advance Season →</button>
                         </div>
@@ -455,7 +594,7 @@
                             <button id="edit-scout-target-btn" class="btn-secondary">Edit Scout Details</button>
                         </div>
 
-                        <!-- Scout Target Basic Info -->
+                        <!-- Scout Target Basic Info - Same as player detail -->
                         <div class="player-basic-info">
                             <div class="player-photo">
                                 <div class="player-avatar">👤</div>
@@ -519,6 +658,60 @@
                             </div>
                         </div>
 
+                        <!-- Scout Target Stats Grid -->
+                        <div class="player-stats-container">
+                            <div class="stats-column">
+                                <h3 class="stats-header technical" id="scout-stats-header-1">TECHNICAL</h3>
+                                <div id="scout-stats-column-1">
+                                    <!-- Dynamic stats will be inserted here -->
+                                </div>
+                            </div>
+
+                            <div class="stats-column">
+                                <h3 class="stats-header mental" id="scout-stats-header-2">MENTAL</h3>
+                                <div id="scout-stats-column-2">
+                                    <!-- Dynamic stats will be inserted here -->
+                                </div>
+                            </div>
+
+                            <div class="stats-column">
+                                <h3 class="stats-header physical" id="scout-stats-header-3">PHYSICAL</h3>
+                                <div id="scout-stats-column-3">
+                                    <!-- Dynamic stats will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scout Target Position Chart -->
+                        <div class="position-chart-container">
+                            <h3>Preferred Positions</h3>
+                            <div class="position-chart">
+                                <div class="position-field">
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="ST">ST</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="LW">LW</div>
+                                        <div class="position-slot" data-position="CAM">CAM</div>
+                                        <div class="position-slot" data-position="RW">RW</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="CM">CM</div>
+                                        <div class="position-slot" data-position="CM">CM</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="LB">LB</div>
+                                        <div class="position-slot" data-position="CB">CB</div>
+                                        <div class="position-slot" data-position="CB">CB</div>
+                                        <div class="position-slot" data-position="RB">RB</div>
+                                    </div>
+                                    <div class="position-row">
+                                        <div class="position-slot" data-position="GK">GK</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Scout Notes Section -->
                         <div class="scout-notes-container">
                             <div class="scout-section">
@@ -548,6 +741,7 @@
             </main>
         </div>
 
+        <!-- MODALS START HERE -->
         <!-- Create Career Modal -->
         <div id="create-career-modal" class="modal">
             <div class="modal-content">
@@ -576,9 +770,9 @@
             </div>
         </div>
 
-        <!-- Enhanced Add/Edit Player Modal -->
+        <!-- Enhanced Add/Edit Player Modal with Positions and Individual Stats -->
         <div id="add-player-modal" class="modal">
-            <div class="modal-content large-modal">
+            <div class="modal-content extra-large-modal">
                 <div class="modal-header">
                     <h3>Add New Player</h3>
                     <button class="close-btn">&times;</button>
@@ -586,6 +780,8 @@
                 <form id="add-player-form" class="player-form">
                     <div class="form-tabs">
                         <button type="button" class="form-tab active" data-tab="basic">Basic Info</button>
+                        <button type="button" class="form-tab" data-tab="positions">Positions</button>
+                        <button type="button" class="form-tab" data-tab="attributes">Attributes</button>
                         <button type="button" class="form-tab" data-tab="physical">Physical</button>
                         <button type="button" class="form-tab" data-tab="contract">Contract</button>
                         <button type="button" class="form-tab" data-tab="other">Other</button>
@@ -599,7 +795,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="player-position">Position</label>
+                                <label for="player-position">Primary Position</label>
                                 <select id="player-position">
                                     <option value="GK">GK</option>
                                     <option value="CB">CB</option>
@@ -641,6 +837,71 @@
                                     <input type="number" id="player-potential-max" min="1" max="99" value="80" placeholder="Max">
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Positions Tab -->
+                    <div class="form-tab-content" id="positions-tab">
+                        <div class="form-group">
+                            <label>Positions Player Can Play</label>
+                            <p class="form-help">Select all positions this player can effectively play in</p>
+                            <div class="positions-grid">
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-gk" value="GK">
+                                    <label for="pos-gk">GK</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-cb" value="CB">
+                                    <label for="pos-cb">CB</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-lb" value="LB">
+                                    <label for="pos-lb">LB</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-rb" value="RB">
+                                    <label for="pos-rb">RB</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-cdm" value="CDM">
+                                    <label for="pos-cdm">CDM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-cm" value="CM">
+                                    <label for="pos-cm">CM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-cam" value="CAM">
+                                    <label for="pos-cam">CAM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-lw" value="LW">
+                                    <label for="pos-lw">LW</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-rw" value="RW">
+                                    <label for="pos-rw">RW</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-lm" value="LM">
+                                    <label for="pos-lm">LM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-rm" value="RM">
+                                    <label for="pos-rm">RM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="pos-st" value="ST">
+                                    <label for="pos-st">ST</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attributes Tab -->
+                    <div class="form-tab-content" id="attributes-tab">
+                        <div class="attributes-container" id="player-attributes-container">
+                            <!-- Dynamic attributes will be inserted here based on position -->
                         </div>
                     </div>
 
@@ -714,7 +975,7 @@
 
         <!-- Enhanced Edit Player Modal -->
         <div id="edit-player-modal" class="modal">
-            <div class="modal-content large-modal">
+            <div class="modal-content extra-large-modal">
                 <div class="modal-header">
                     <h3>Edit Player</h3>
                     <button class="close-btn">&times;</button>
@@ -723,11 +984,14 @@
                     <input type="hidden" id="edit-player-id">
                     <div class="form-tabs">
                         <button type="button" class="form-tab active" data-tab="edit-basic">Basic Info</button>
+                        <button type="button" class="form-tab" data-tab="edit-positions">Positions</button>
+                        <button type="button" class="form-tab" data-tab="edit-attributes">Attributes</button>
                         <button type="button" class="form-tab" data-tab="edit-physical">Physical</button>
                         <button type="button" class="form-tab" data-tab="edit-contract">Contract</button>
                         <button type="button" class="form-tab" data-tab="edit-other">Other</button>
                     </div>
                     
+                    <!-- Similar structure to add player modal but with edit- prefixes -->
                     <!-- Basic Info Tab -->
                     <div class="form-tab-content active" id="edit-basic-tab">
                         <div class="form-group">
@@ -736,7 +1000,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="edit-player-position">Position</label>
+                                <label for="edit-player-position">Primary Position</label>
                                 <select id="edit-player-position">
                                     <option value="GK">GK</option>
                                     <option value="CB">CB</option>
@@ -778,6 +1042,71 @@
                                     <input type="number" id="edit-player-potential-max" min="1" max="99" placeholder="Max">
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Positions Tab -->
+                    <div class="form-tab-content" id="edit-positions-tab">
+                        <div class="form-group">
+                            <label>Positions Player Can Play</label>
+                            <p class="form-help">Select all positions this player can effectively play in</p>
+                            <div class="positions-grid">
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-gk" value="GK">
+                                    <label for="edit-pos-gk">GK</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-cb" value="CB">
+                                    <label for="edit-pos-cb">CB</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-lb" value="LB">
+                                    <label for="edit-pos-lb">LB</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-rb" value="RB">
+                                    <label for="edit-pos-rb">RB</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-cdm" value="CDM">
+                                    <label for="edit-pos-cdm">CDM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-cm" value="CM">
+                                    <label for="edit-pos-cm">CM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-cam" value="CAM">
+                                    <label for="edit-pos-cam">CAM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-lw" value="LW">
+                                    <label for="edit-pos-lw">LW</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-rw" value="RW">
+                                    <label for="edit-pos-rw">RW</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-lm" value="LM">
+                                    <label for="edit-pos-lm">LM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-rm" value="RM">
+                                    <label for="edit-pos-rm">RM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="edit-pos-st" value="ST">
+                                    <label for="edit-pos-st">ST</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attributes Tab -->
+                    <div class="form-tab-content" id="edit-attributes-tab">
+                        <div class="attributes-container" id="edit-player-attributes-container">
+                            <!-- Dynamic attributes will be inserted here -->
                         </div>
                     </div>
 
@@ -849,9 +1178,10 @@
             </div>
         </div>
 
+        <!-- Rest of modals remain the same but will be updated in the next part -->
         <!-- Enhanced Add/Edit Scout Target Modal -->
         <div id="add-scout-modal" class="modal">
-            <div class="modal-content large-modal">
+            <div class="modal-content extra-large-modal">
                 <div class="modal-header">
                     <h3>Add Scout Target</h3>
                     <button class="close-btn">&times;</button>
@@ -859,8 +1189,10 @@
                 <form id="add-scout-form" class="player-form">
                     <div class="form-tabs">
                         <button type="button" class="form-tab active" data-tab="scout-basic">Basic Info</button>
+                        <button type="button" class="form-tab" data-tab="scout-positions">Positions</button>
                         <button type="button" class="form-tab" data-tab="scout-club">Club Info</button>
                         <button type="button" class="form-tab" data-tab="scout-status">Scouting</button>
+                        <button type="button" class="form-tab" data-tab="scout-attributes">Attributes</button>
                         <button type="button" class="form-tab" data-tab="scout-notes">Scout Reports</button>
                     </div>
                     
@@ -872,7 +1204,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="scout-position">Position</label>
+                                <label for="scout-position">Primary Position</label>
                                 <select id="scout-position">
                                     <option value="GK">GK</option>
                                     <option value="CB">CB</option>
@@ -912,6 +1244,64 @@
                                     <input type="number" id="scout-potential-min" min="1" max="99" value="75" placeholder="Min">
                                     <span class="range-separator">-</span>
                                     <input type="number" id="scout-potential-max" min="1" max="99" value="80" placeholder="Max">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Positions Tab -->
+                    <div class="form-tab-content" id="scout-positions-tab">
+                        <div class="form-group">
+                            <label>Positions Player Can Play</label>
+                            <p class="form-help">Select all positions this player can effectively play in</p>
+                            <div class="positions-grid">
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-gk" value="GK">
+                                    <label for="scout-pos-gk">GK</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-cb" value="CB">
+                                    <label for="scout-pos-cb">CB</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-lb" value="LB">
+                                    <label for="scout-pos-lb">LB</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-rb" value="RB">
+                                    <label for="scout-pos-rb">RB</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-cdm" value="CDM">
+                                    <label for="scout-pos-cdm">CDM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-cm" value="CM">
+                                    <label for="scout-pos-cm">CM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-cam" value="CAM">
+                                    <label for="scout-pos-cam">CAM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-lw" value="LW">
+                                    <label for="scout-pos-lw">LW</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-rw" value="RW">
+                                    <label for="scout-pos-rw">RW</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-lm" value="LM">
+                                    <label for="scout-pos-lm">LM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-rm" value="RM">
+                                    <label for="scout-pos-rm">RM</label>
+                                </div>
+                                <div class="position-checkbox">
+                                    <input type="checkbox" id="scout-pos-st" value="ST">
+                                    <label for="scout-pos-st">ST</label>
                                 </div>
                             </div>
                         </div>
@@ -979,6 +1369,13 @@
                                 <option value="On Hold">On Hold</option>
                                 <option value="No Longer Interested">No Longer Interested</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <!-- Attributes Tab -->
+                    <div class="form-tab-content" id="scout-attributes-tab">
+                        <div class="attributes-container" id="scout-attributes-container">
+                            <!-- Dynamic attributes will be inserted here -->
                         </div>
                     </div>
 
