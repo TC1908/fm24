@@ -6,26 +6,32 @@
     <title>Football Squad Manager</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#4F46E5">
+    <meta name="theme-color" content="#1a1a1a">
 </head>
 <body>
     <div id="app">
         <!-- Navigation -->
         <nav class="navbar">
             <div class="nav-container">
-                <h1 class="nav-title">Football Squad Manager</h1>
+                <div class="nav-brand">
+                    <h1 class="nav-title">⚽ Squad Manager</h1>
+                </div>
                 <div class="nav-tabs">
                     <button class="nav-tab active" data-tab="overview">
                         <span class="nav-icon">👥</span>
-                        Squad Overview
+                        Squad
                     </button>
                     <button class="nav-tab" data-tab="tactics">
-                        <span class="nav-icon">⚽</span>
+                        <span class="nav-icon">🎯</span>
                         Tactics
                     </button>
                     <button class="nav-tab" data-tab="planning">
                         <span class="nav-icon">📅</span>
-                        Future Planning
+                        Planning
+                    </button>
+                    <button class="nav-tab" data-tab="scouting">
+                        <span class="nav-icon">🔍</span>
+                        Scouting
                     </button>
                 </div>
             </div>
@@ -35,24 +41,35 @@
         <main class="main-content">
             <!-- Squad Overview Tab -->
             <div id="overview-tab" class="tab-content active">
+                <div class="page-header">
+                    <h2>Squad Overview</h2>
+                    <button id="add-player-btn" class="btn-primary">
+                        <span>+</span> Add Player
+                    </button>
+                </div>
+                
                 <div class="controls-section">
                     <div class="search-controls">
-                        <input type="text" id="search-input" placeholder="Search players..." class="search-input">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="search-input" placeholder="Search players..." class="search-input">
+                        </div>
                         <select id="position-filter" class="filter-select">
                             <option value="">All positions</option>
                         </select>
-                        <select id="sort-select" class="sort-select">
-                            <option value="name">Sort by Name</option>
-                            <option value="position">Sort by Position</option>
-                            <option value="age">Sort by Age</option>
-                            <option value="level">Sort by Level</option>
-                            <option value="potential">Sort by Potential</option>
-                            <option value="salary">Sort by Salary</option>
-                            <option value="transferWorth">Sort by Transfer Worth</option>
-                        </select>
-                        <button id="sort-order" class="sort-order-btn">↑</button>
+                        <div class="sort-controls">
+                            <select id="sort-select" class="sort-select">
+                                <option value="name">Name</option>
+                                <option value="position">Position</option>
+                                <option value="age">Age</option>
+                                <option value="level">Level</option>
+                                <option value="potential">Potential</option>
+                                <option value="salary">Salary</option>
+                                <option value="transferWorth">Value</option>
+                            </select>
+                            <button id="sort-order" class="sort-order-btn">↑</button>
+                        </div>
                     </div>
-                    <button id="add-player-btn" class="add-player-btn">+ Add Player</button>
                 </div>
 
                 <div class="players-table-container">
@@ -60,13 +77,14 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Position</th>
+                                <th>Pos</th>
                                 <th>Age</th>
                                 <th>Level</th>
                                 <th>Potential</th>
                                 <th>Salary</th>
                                 <th>Contract</th>
-                                <th>Transfer Worth</th>
+                                <th>Value</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="players-tbody">
@@ -75,49 +93,160 @@
                 </div>
             </div>
 
-            <!-- Tactics Tab -->
-            <div id="tactics-tab" class="tab-content">
-                <div class="formation-controls">
-                    <button class="formation-btn active" data-formation="4231">4-2-3-1</button>
-                    <button class="formation-btn" data-formation="433">4-3-3</button>
-                    <button class="formation-btn" data-formation="343">3-4-3</button>
-                    <button class="formation-btn" data-formation="523">5-2-3</button>
-                    <button class="formation-btn" data-formation="442">4-4-2</button>
-                    <button class="formation-btn" data-formation="41212">4-1-2-1-2</button>
-                    <button class="formation-btn" data-formation="424">4-2-4</button>
-                </div>
-
-                <div class="tactics-layout">
-                    <div class="field-container">
-                        <div id="football-field" class="football-field">
-                            <div id="field-positions"></div>
-                            <div class="bench-area">
-                                <h3>Bench</h3>
-                                <div id="bench-positions" class="bench-grid"></div>
+            <!-- Player Detail Page -->
+            <div id="player-detail-tab" class="tab-content">
+                <div class="player-detail-page">
+                    <div class="player-detail-header">
+                        <button id="back-to-overview" class="btn-back">← Back to Squad</button>
+                        <div class="player-detail-title">
+                            <h1 id="player-detail-name">Player Name</h1>
+                            <div class="player-detail-subtitle">
+                                <span id="player-detail-position">Position</span>
+                                <span id="player-detail-age">Age</span>
+                            </div>
+                        </div>
+                        <button id="edit-player-btn" class="btn-secondary">Edit Player</button>
+                    </div>
+                    
+                    <div class="player-detail-content">
+                        <div class="player-stats-grid">
+                            <div class="stat-card">
+                                <h3>Current Ability</h3>
+                                <div id="player-current-rating" class="star-rating"></div>
+                                <div id="player-current-value" class="stat-value"></div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Potential Ability</h3>
+                                <div id="player-potential-rating" class="star-rating"></div>
+                                <div id="player-potential-value" class="stat-value"></div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Contract</h3>
+                                <div id="player-contract-info" class="stat-value"></div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Market Value</h3>
+                                <div id="player-market-value" class="stat-value highlight"></div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Weekly Wage</h3>
+                                <div id="player-wage" class="stat-value"></div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Squad Status</h3>
+                                <div id="player-squad-status" class="stat-value"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="player-pool">
-                        <h3>Available Players</h3>
-                        <div id="available-players" class="player-cards-grid"></div>
+                </div>
+            </div>
+
+            <!-- Tactics Tab -->
+            <div id="tactics-tab" class="tab-content">
+                <div class="page-header">
+                    <h2>Tactics Board</h2>
+                    <div class="formation-controls">
+                        <button class="formation-btn active" data-formation="4231">4-2-3-1</button>
+                        <button class="formation-btn" data-formation="433">4-3-3</button>
+                        <button class="formation-btn" data-formation="343">3-4-3</button>
+                        <button class="formation-btn" data-formation="523">5-2-3</button>
+                        <button class="formation-btn" data-formation="442">4-4-2</button>
+                        <button class="formation-btn" data-formation="41212">4-1-2-1-2</button>
+                        <button class="formation-btn" data-formation="424">4-2-4</button>
+                    </div>
+                </div>
+
+                <div class="tactics-layout">
+                    <div class="field-section">
+                        <div class="field-container">
+                            <div id="football-field" class="football-field">
+                                <div id="field-positions"></div>
+                            </div>
+                        </div>
+                        <div class="selected-player-info" id="selected-player-info">
+                            <h3>Player Information</h3>
+                            <p>Select a position to view player details</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tactics-sidebar">
+                        <div class="bench-section">
+                            <h3>Bench</h3>
+                            <div id="bench-positions" class="bench-list"></div>
+                        </div>
+                        
+                        <div class="player-pool">
+                            <h3>Available Players</h3>
+                            <div id="available-players" class="player-cards-grid"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Future Planning Tab -->
             <div id="planning-tab" class="tab-content">
-                <div class="planning-header">
+                <div class="page-header">
                     <h2>Future Squad Planning</h2>
-                    <p>Drag players into your planning categories for each season</p>
+                    <div class="planning-controls">
+                        <button id="add-season-player-btn" class="btn-secondary">Add Future Player</button>
+                        <button id="advance-seasons-btn" class="btn-primary">Advance Season →</button>
+                    </div>
                 </div>
 
                 <div id="planning-seasons" class="planning-seasons">
                     <!-- Seasons will be generated by JavaScript -->
                 </div>
+            </div>
 
-                <div class="planning-player-pool">
-                    <h3>Available Players</h3>
-                    <div id="planning-players" class="planning-player-cards"></div>
+            <!-- Scouting Tab -->
+            <div id="scouting-tab" class="tab-content">
+                <div class="page-header">
+                    <h2>Scouting Network</h2>
+                    <button id="add-scout-target-btn" class="btn-primary">
+                        <span>+</span> Add Scout Target
+                    </button>
+                </div>
+                
+                <div class="controls-section">
+                    <div class="search-controls">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="scout-search-input" placeholder="Search targets..." class="search-input">
+                        </div>
+                        <select id="scout-position-filter" class="filter-select">
+                            <option value="">All positions</option>
+                        </select>
+                        <select id="scout-rating-filter" class="filter-select">
+                            <option value="">All ratings</option>
+                            <option value="5">5 stars</option>
+                            <option value="4">4+ stars</option>
+                            <option value="3">3+ stars</option>
+                            <option value="2">2+ stars</option>
+                            <option value="1">1+ stars</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="players-table-container">
+                    <table class="players-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Pos</th>
+                                <th>Age</th>
+                                <th>Level</th>
+                                <th>Potential</th>
+                                <th>Scout Rating</th>
+                                <th>Transfer Interest</th>
+                                <th>Loan Interest</th>
+                                <th>Next Steps</th>
+                                <th>Value</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scout-targets-tbody">
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>
@@ -159,11 +288,11 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="player-level">Level</label>
+                            <label for="player-level">Current Ability (1-99)</label>
                             <input type="number" id="player-level" min="1" max="99" value="70">
                         </div>
                         <div class="form-group">
-                            <label for="player-potential">Potential</label>
+                            <label for="player-potential">Potential Ability (1-99)</label>
                             <input type="number" id="player-potential" min="1" max="99" value="75">
                         </div>
                     </div>
@@ -189,16 +318,235 @@
             </div>
         </div>
 
-        <!-- Player Detail Modal -->
-        <div id="player-detail-modal" class="modal">
+        <!-- Edit Player Modal -->
+        <div id="edit-player-modal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 id="player-detail-name">Player Details</h3>
+                    <h3>Edit Player</h3>
                     <button class="close-btn">&times;</button>
                 </div>
-                <div id="player-detail-content" class="player-detail-content">
-                    <!-- Player details will be populated by JavaScript -->
+                <form id="edit-player-form" class="player-form">
+                    <!-- Similar form fields as add player -->
+                    <input type="hidden" id="edit-player-id">
+                    <div class="form-group">
+                        <label for="edit-player-name">Name *</label>
+                        <input type="text" id="edit-player-name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-player-position">Position</label>
+                            <select id="edit-player-position">
+                                <option value="GK">GK</option>
+                                <option value="CB">CB</option>
+                                <option value="LB">LB</option>
+                                <option value="RB">RB</option>
+                                <option value="CDM">CDM</option>
+                                <option value="CM">CM</option>
+                                <option value="CAM">CAM</option>
+                                <option value="LW">LW</option>
+                                <option value="RW">RW</option>
+                                <option value="ST">ST</option>
+                                <option value="LM">LM</option>
+                                <option value="RM">RM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-player-age">Age</label>
+                            <input type="number" id="edit-player-age" min="16" max="40">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-player-level">Current Ability (1-99)</label>
+                            <input type="number" id="edit-player-level" min="1" max="99">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-player-potential">Potential Ability (1-99)</label>
+                            <input type="number" id="edit-player-potential" min="1" max="99">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-player-salary">Weekly Salary (€)</label>
+                            <input type="number" id="edit-player-salary" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-player-contract">Contract (years)</label>
+                            <input type="number" id="edit-player-contract" min="1" max="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-player-transfer">Transfer Worth (€)</label>
+                        <input type="number" id="edit-player-transfer" min="0">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                        <button type="button" class="btn-secondary" id="cancel-edit">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Scout Target Modal -->
+        <div id="add-scout-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add Scout Target</h3>
+                    <button class="close-btn">&times;</button>
                 </div>
+                <form id="add-scout-form" class="player-form">
+                    <div class="form-group">
+                        <label for="scout-name">Name *</label>
+                        <input type="text" id="scout-name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="scout-position">Position</label>
+                            <select id="scout-position">
+                                <option value="GK">GK</option>
+                                <option value="CB">CB</option>
+                                <option value="LB">LB</option>
+                                <option value="RB">RB</option>
+                                <option value="CDM">CDM</option>
+                                <option value="CM">CM</option>
+                                <option value="CAM">CAM</option>
+                                <option value="LW">LW</option>
+                                <option value="RW">RW</option>
+                                <option value="ST">ST</option>
+                                <option value="LM">LM</option>
+                                <option value="RM">RM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="scout-age">Age</label>
+                            <input type="number" id="scout-age" min="16" max="40" value="22">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="scout-level">Current Ability (1-99)</label>
+                            <input type="number" id="scout-level" min="1" max="99" value="70">
+                        </div>
+                        <div class="form-group">
+                            <label for="scout-potential">Potential Ability (1-99)</label>
+                            <input type="number" id="scout-potential" min="1" max="99" value="75">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="scout-rating">Scout Rating (1-5)</label>
+                            <input type="number" id="scout-rating" min="1" max="5" step="0.5" value="3">
+                        </div>
+                        <div class="form-group">
+                            <label for="scout-transfer">Transfer Worth (€)</label>
+                            <input type="number" id="scout-transfer" min="0" value="1000000">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="scout-transfer-interest">Transfer Interest</label>
+                            <select id="scout-transfer-interest">
+                                <option value="Very High">Very High</option>
+                                <option value="High">High</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="Low">Low</option>
+                                <option value="Very Low">Very Low</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="scout-loan-interest">Loan Interest</label>
+                            <select id="scout-loan-interest">
+                                <option value="Very High">Very High</option>
+                                <option value="High">High</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="Low">Low</option>
+                                <option value="Very Low">Very Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="scout-next-steps">Next Steps</label>
+                        <select id="scout-next-steps">
+                            <option value="Continue Monitoring">Continue Monitoring</option>
+                            <option value="Make Approach">Make Approach</option>
+                            <option value="Formal Offer">Formal Offer</option>
+                            <option value="Loan Inquiry">Loan Inquiry</option>
+                            <option value="On Hold">On Hold</option>
+                            <option value="No Longer Interested">No Longer Interested</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Add Target</button>
+                        <button type="button" class="btn-secondary" id="cancel-scout">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Future Player Modal -->
+        <div id="add-future-player-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add Future Player</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <form id="add-future-player-form" class="player-form">
+                    <div class="form-group">
+                        <label for="future-player-name">Name *</label>
+                        <input type="text" id="future-player-name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="future-player-position">Position</label>
+                            <select id="future-player-position">
+                                <option value="GK">GK</option>
+                                <option value="CB">CB</option>
+                                <option value="LB">LB</option>
+                                <option value="RB">RB</option>
+                                <option value="CDM">CDM</option>
+                                <option value="CM">CM</option>
+                                <option value="CAM">CAM</option>
+                                <option value="LW">LW</option>
+                                <option value="RW">RW</option>
+                                <option value="ST">ST</option>
+                                <option value="LM">LM</option>
+                                <option value="RM">RM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="future-player-age">Age</label>
+                            <input type="number" id="future-player-age" min="16" max="40" value="18">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="future-player-level">Current Ability (1-99)</label>
+                            <input type="number" id="future-player-level" min="1" max="99" value="60">
+                        </div>
+                        <div class="form-group">
+                            <label for="future-player-potential">Potential Ability (1-99)</label>
+                            <input type="number" id="future-player-potential" min="1" max="99" value="80">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="future-player-salary">Weekly Salary (€)</label>
+                            <input type="number" id="future-player-salary" min="0" value="20000">
+                        </div>
+                        <div class="form-group">
+                            <label for="future-player-contract">Contract (years)</label>
+                            <input type="number" id="future-player-contract" min="1" max="10" value="5">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="future-player-transfer">Transfer Worth (€)</label>
+                        <input type="number" id="future-player-transfer" min="0" value="500000">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Add Future Player</button>
+                        <button type="button" class="btn-secondary" id="cancel-future">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
